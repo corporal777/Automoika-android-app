@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bottom_navigation_bar_icons_size">26dp</dimen>
+<!--    <dimen name="bottom_nav_icon_size">57dp</dimen>-->
+
+    <dimen name="background_large_corners_radius">10dp</dimen>
+
+    <dimen name="edit_text_min_height">44dp</dimen>
+    <dimen name="edit_text_size">16.5sp</dimen>
+    <dimen name="password_errors_text_size">14sp</dimen>
+
+    <dimen name="car_wash_list_item_image_height">160dp</dimen>
+    <dimen name="car_wash_detail_image_height">430dp</dimen>
+
+
+    <dimen name="toolbar_icons_size">30dp</dimen>
+
+    <dimen name="text_size_fifteen">15sp</dimen>
+    <dimen name="text_size_sixteen">16sp</dimen>
+    <dimen name="text_size_twenty">20sp</dimen>
+    <dimen name="text_size_twenty_two">22sp</dimen>
+
+    <dimen name="margin_horizontal_default">15dp</dimen>
+    <dimen name="margin_ten">10dp</dimen>
+    <dimen name="margin_twelve">12dp</dimen>
+    <dimen name="margin_four_teen">14dp</dimen>
+    <dimen name="margin_fif_teen">15dp</dimen>
+    <dimen name="margin_six_teen">16dp</dimen>
+    <dimen name="margin_seventeen_teen">17dp</dimen>
+    <dimen name="margin_eighteen_teen">18dp</dimen>
+
+    <dimen name="action_button_min_height">45dp</dimen>
+    <dimen name="action_button_text_size">16sp</dimen>
+
+    <dimen name="auth_button_min_height">46dp</dimen>
+    <dimen name="auth_button_text_size">16sp</dimen>
+
+    <dimen name="toolbar_title_text_size">16sp</dimen>
+
+    <dimen name="city_fragment_logo_height">120dp</dimen>
+    <dimen name="city_fragment_logo_width">180dp</dimen>
+
+    <dimen name="search_bottom_sheet_top_view_height">150dp</dimen>
+
+    <dimen name="symbol_view_corner_radius">2dp</dimen>
+    <dimen name="symbol_view_stroke_width">2dp</dimen>
+    <dimen name="symbol_view_active_stroke_width">2.5dp</dimen>
+
+    <dimen name="code_view_spacing">5dp</dimen>
+    <dimen name="code_view_width">45dp</dimen>
+    <dimen name="code_view_height">45dp</dimen>
+    <dimen name="code_view_text_size">20sp</dimen>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?attr/colorControlHighlight">
+    <item>
+        <shape>
+            <padding
+                android:left="@dimen/background_large_corners_radius"
+                android:right="@dimen/background_large_corners_radius" />
+            <solid android:color="@color/input_unfocused_background"/>
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+</ripple>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "997801308928",
+    "project_id": "automoika-kg-android",
+    "storage_bucket": "automoika-kg-android.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997801308928:android:716efb97a961fd52e839e5",
+        "android_client_info": {
+          "package_name": "kg.autojuuguch.automoikakg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "997801308928-eibne6t18u14fogpn8ottpfs4k5dcfd8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kg.autojuuguch.automoikakg",
+            "certificate_hash": "e63471910d9caf0ce4ef5ae45fd737c61c37aeb0"
+          }
+        },
+        {
+          "client_id": "997801308928-ganlah5oji804mvl05p2csmqjnph6u09.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kg.autojuuguch.automoikakg",
+            "certificate_hash": "2b8464c0990f5cf3d3435086f67b15496e68c028"
+          }
+        },
+        {
+          "client_id": "997801308928-fc7nd3ueti78nrbf13cr1og3umctafc7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnIC5S9OUkp4uNpA6onnLh7YS-lVQwZOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "997801308928-fc7nd3ueti78nrbf13cr1og3umctafc7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

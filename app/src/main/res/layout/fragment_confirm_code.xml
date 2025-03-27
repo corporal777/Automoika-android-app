@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background">
+
+    <kg.autojuuguch.automoikakg.ui.views.ToolbarLayoutView
+        android:id="@+id/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:toolbarText="@string/confirm_phone_text" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/btnConfirm"
+        app:layout_constraintTop_toBottomOf="@id/layout_toolbar">
+
+        <LinearLayout
+            android:id="@+id/ln_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextStyle.Semibold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
+                android:text="@string/confirm_phone_number_by_code"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tv_mobile_phone"
+                style="@style/TextStyle.Bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
+                android:textColor="@color/app_main_color"
+                android:textSize="20sp"
+                tools:text="+996 508 138 691" />
+
+            <TextView
+                style="@style/TextStyle.Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center_horizontal"
+                android:text="@string/enter_code_from_push"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+
+            <kg.autojuuguch.automoikakg.ui.views.code.CodeConfirmationView
+                android:id="@+id/phone_code_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                app:codeViewHeight="@dimen/code_view_height"
+                app:codeViewLength="6"
+                app:codeViewSpace="@dimen/code_view_spacing"
+                app:codeViewTextSize="@dimen/code_view_text_size"
+                app:codeViewWidth="@dimen/code_view_width" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_code_error"
+                style="@style/TextStyle.Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="@string/error_enter_code"
+                android:textColor="@color/title_text_error_red"
+                android:textSize="17sp"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+    <kg.autojuuguch.automoikakg.ui.views.LoadingButton
+        android:id="@+id/btnConfirm"
+        style="@style/BtnLoadingStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_default"
+        android:layout_marginBottom="10dp"
+        app:buttonText="@string/confirm"
+        app:layout_constraintBottom_toTopOf="@id/btnSendAgain" />
+
+    <kg.autojuuguch.automoikakg.ui.views.LoadingButton
+        android:id="@+id/btnSendAgain"
+        style="@style/BtnLoadingStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_default"
+        android:layout_marginBottom="20dp"
+        app:buttonBackground="@drawable/btn_background_gray"
+        app:buttonText="@string/send_again"
+        app:buttonTextColor="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,156 @@
+<resources>
+    <string name="app_name">AutoMoikaKg</string>
+
+    <string name="car_wash_address_text">Адрес : %s</string>
+    <string name="search_text_by_name_address">Поиск по названию, адресу</string>
+    <string name="search_text">Поиск</string>
+    <string name="location_text">Местоположение</string>
+    <string name="no_data_found_title">Нет результатов</string>
+    <string name="text_call">Позвонить</string>
+    <string name="text_boxes">Боксы:</string>
+
+    <string name="test_text">Практически в каждом населенном пункте России на сегодняшний день вы с легкостью найдете разнообразные детские спектакли и представления. Детский театр перестал давно-но экзотикой...</string>
+    <string name="route_instruction_text">Инструкция маршрута:</string>
+    <string name="main_text">Главная</string>
+    <string name="reviews_text">Отзывы</string>
+    <string name="add_review_text">Оставить отзыв</string>
+    <string name="review_empty_text">Отзывов пока нет</string>
+
+    <string name="city_info_title">Автомойки будут отображаться по выбранному городу. Изменить выбранный город можно в профиле.</string>
+    <string name="is_your_city_is">Ваш город %s?</string>
+    <string name="change_city">Изменить город</string>
+    <string name="name_city">Название города</string>
+    <string name="enter_name_city">Введите название города</string>
+    <string name="city_not_found_error_text">Не удалось определить город</string>
+    <string name="request_error_text">Ошибка выполнения запроса</string>
+    <string name="city_success_saved_text">Город успешно сохранен</string>
+    <string name="welcome_text">Добро пожаловать</string>
+
+    <string name="welcome_user_text">Здравствуйте %s</string>
+    <string name="welcome_user_short_text">Здравствуйте</string>
+
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="accept">Принять</string>
+    <string name="login">Войти</string>
+    <string name="login_phone">Войти по номеру</string>
+    <string name="login_google">Войти через Google</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="do_register">Зарегистрировать</string>
+    <string name="continue_text">Продолжить</string>
+    <string name="register_user">Я пользователь</string>
+    <string name="register_car_wash">У меня есть автомойка</string>
+    <string name="save">Сохранить</string>
+
+    <string name="auth_info_title">Войдите в аккаунт \nили зарегистрируйтесь</string>
+    <string name="auth_info_text">Чтобы получить доступ ко всем возможностям и функциям приложения</string>
+    <string name="auth_google_text">Или войдите в один клик</string>
+    <string name="address_data_text">Данные адреса</string>
+    <string name="car_wash_data_text">Данные автомойки</string>
+    <string name="contacts_data_text">Контактные данные</string>
+    <string name="account_data_text">Данные профиля</string>
+    <string name="main_data_text">Основная информация</string>
+    <string name="car_wash_contacts_text">Контакты и адрес</string>
+    <string name="login_info_title_text">Введите номер телефона, \nкоторый указали при регистрации</string>
+    <string name="enter_phone_text">Введите номер телефона</string>
+    <string name="enter_whatsapp_text">Введите номер whatsapp</string>
+    <string name="login_text">Логин</string>
+
+    <string name="image_text">Фотография (Не обязательно)</string>
+    <string name="last_name_text">Фамилия</string>
+    <string name="name_text">Имя</string>
+    <string name="middle_name_text">Отчество (Не обязательно)</string>
+    <string name="input_first_name_hint">Введите ваше имя</string>
+    <string name="input_last_name_hint">Введите вашу фамилию</string>
+    <string name="input_middle_name_hint">Введите ваше отчество</string>
+    <string name="input_city_hint">Введите город</string>
+    <string name="input_street_house_hint">Введите улицу, дом</string>
+
+    <string name="phone_login_text">Номер телефона (Логин)</string>
+
+    <string name="user_agreement_text">Я ознакомлен(а) и принимаю условия пользовательского соглашения</string>
+    <string name="privacy_politics_url">https://drive.google.com/file/d/1UN-jhtebdT5t0ziHegMQzrX71XH3NX0o/view?usp=sharing</string>
+
+
+
+    <string name="user_with_phone_not_found_error_text">Пользователь с таким номером не найден</string>
+    <string name="user_not_found_error_text">Пользователь не найден</string>
+
+
+    <string name="confirm_phone_number_by_code">Подтвердите номер</string>
+    <string name="confirm_email_by_code">Подтвердите email</string>
+    <string name="enter_code_from_push">Введите код из уведомления</string>
+    <string name="error_enter_code">Введен неправильный код</string>
+    <string name="enter_last_six_numbers_from_push">Вам поступит уведомление с кодом из 6 цифр. Введите его для подтверждения</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="send_again">Получить повторно</string>
+    <string name="confirm_phone_text">Подтверждение номера</string>
+    <string name="auth_text">Авторизация</string>
+    <string name="register_text">Регистрация</string>
+
+
+    <string name="add_image_text">Добавить фото</string>
+    <string name="change_image_text">Изменить фото</string>
+    <string name="open_gallery">Открыть галлерею</string>
+    <string name="remove_image">Удалить фото</string>
+    <string name="cancel">Отмена</string>
+    <string name="open">Открыть</string>
+    <string name="ok">Ок</string>
+
+    <string name="register_login_error_text">Введенный номер %s уже подтвержден в другом профиле. Если это Вы, введите правильный пароль и нажмите «Продолжить». Если это не Вы, то введите другой номер или обратитесь в службу поддержки.</string>
+    <string name="is_not_unique_phone_text">Введенный номер %s уже подтвержден в другом профиле. Если Вы действительно хотите привязать данный номер к текущему профилю, обратитесь в службу поддержки.</string>
+    <string name="confirm_phone_positive">Подтвердить</string>
+    <string name="confirm_phone_negative">Отменить</string>
+
+    <string name="image_transition_name">image_open_transition</string>
+
+    <string name="notification_permission_title">Разрешение на уведомления</string>
+    <string name="notification_permission_text">Разрешение на отправку уведомлений необходимо, чтобы получить код для потверждения номера телефона и создания аккауна. Открыть настройки уведомлений?</string>
+    <string name="auto_fill_code">Автозаполнение кода</string>
+    <string name="google_account_not_found">Google Аккаунт не найден</string>
+
+    <string name="password_to_small_error">• 8 символов</string>
+    <string name="password_numbers_error">• Цифры</string>
+    <string name="password_letters_error">• Заглавные латинские буквы</string>
+    <string name="password_big_small_letters_error">• Заглавные и строчные латинские буквы</string>
+    <string name="password_big_letters_error">• Заглавные латинские буквы</string>
+    <string name="password_small_letters_error">• Строчные латинские буквы</string>
+    <string name="password_title_info_text">Пароль должен содержать:</string>
+    <string name="used_unacceptable_symbols">Пароль содержит недопустимые символы: специальные символы (!%&lt;&gt; и т.д.), кириллица. Пожалуйста, используйте только латиницу и цифры.</string>
+
+    <string name="input_password_hint">Пароль</string>
+    <string name="input_password_error_hint">Неверный пароль</string>
+
+    <string name="input_password_error_text">Пароль введен не правильно</string>
+
+
+    <string name="car_wash_name_text">Название автомойки</string>
+    <string name="input_car_wash_name_hint">Введите название</string>
+    <string name="car_wash_description_text">Описание для автомойки</string>
+    <string name="input_car_wash_desc_hint">Введите описание</string>
+    <string name="car_wash_boxes_text">Количество постов</string>
+    <string name="input_car_wash_boxes_hint">Введите количество</string>
+
+    <string name="car_wash_type_text">Тип автомойки</string>
+    <string name="input_car_wash_type_hint">Выберите тип автомойки</string>
+    <string name="input_car_wash_district_hint">Выберите район</string>
+
+    <string name="street_house_text">Название улицы, дом</string>
+    <string name="district_text">Район города (Не обязательно)</string>
+    <string name="find_in_map_text">Найти на карте</string>
+    <string name="way_desc_text">Инструкция маршрута (Не обязательно)</string>
+    <string name="input_way_desc_hint">Введите инструкцию</string>
+
+    <string name="phone_call_text">Номер телефона для связи</string>
+    <string name="whatsapp_text_unrequired">Номер Whatsapp (Не обязательно)</string>
+
+    <string name="telegram_link_text_unrequired">Ссылка в Telegram (Не обязательно)</string>
+    <string name="input_telegram_link_hint">Введите ссылку</string>
+
+    <string name="instagram_link_text_unrequired">Ссылка в Instagram (Не обязательно)</string>
+    <string name="car_wash_image_text">Фотография автомойки</string>
+    <string name="login_password_text">Логин и пароль</string>
+    <string name="register_login_info_text">Введите ваше имя, номер телефона и придумайте пароль.</string>
+    <string name="are_you_sure_exit_text">Вы уверены, что хотите выйти? Все заполненные данные будут утеряны.</string>
+    <string name="not_filled">Не указано</string>
+</resources>

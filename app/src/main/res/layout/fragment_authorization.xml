@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background">
+
+    <kg.autojuuguch.automoikakg.ui.views.ToolbarLayoutView
+        android:id="@+id/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:toolbarText="@string/auth_text" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/top_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="@dimen/city_fragment_logo_width"
+        android:layout_height="@dimen/city_fragment_logo_height"
+        android:src="@drawable/ic_app_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_guideline" />
+
+
+    <TextView
+        android:id="@+id/tv_login_info_title"
+        style="@style/TextStyle.Bold"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_default"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:letterSpacing="-0.02"
+        android:text="@string/auth_info_title"
+        android:textColor="@color/app_main_color"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
+
+    <TextView
+        android:id="@+id/tv_login_info_text"
+        style="@style/TextStyle.Medium"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_default"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:letterSpacing="-0.02"
+        android:text="@string/auth_info_text"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/btn_login"
+        app:layout_constraintTop_toBottomOf="@+id/tv_login_info_title"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_login"
+        style="@style/ButtonStyle.Blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_default"
+        android:layout_marginBottom="15dp"
+        android:minHeight="@dimen/auth_button_min_height"
+        android:text="@string/login"
+        android:textSize="@dimen/auth_button_text_size"
+        app:layout_constraintBottom_toTopOf="@id/btn_register"
+        app:layout_constraintTop_toBottomOf="@id/tv_login_info_text"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_register"
+        style="@style/ButtonStyle.DeepBlue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_default"
+        android:layout_marginBottom="30dp"
+        android:minHeight="@dimen/auth_button_min_height"
+        android:text="@string/register"
+        android:textSize="@dimen/auth_button_text_size"
+        app:layout_constraintBottom_toTopOf="@id/tv_login_google_text" />
+
+
+    <TextView
+        android:id="@+id/tv_login_google_text"
+        style="@style/TextStyle.Medium"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_default"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:letterSpacing="-0.02"
+        android:text="@string/auth_google_text"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/btn_google" />
+
+
+    <kg.autojuuguch.automoikakg.ui.views.LoadingButton
+        android:id="@+id/btn_google"
+        style="@style/BtnLoadingStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_default"
+        android:layout_marginBottom="40dp"
+        app:buttonDrawable="@drawable/ic_google"
+        app:buttonMinHeight="@dimen/auth_button_min_height"
+        app:buttonText="@string/login_google"
+        app:buttonTextSize="@dimen/auth_button_text_size"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

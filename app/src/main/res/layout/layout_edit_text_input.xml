@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fl_input"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_input_normal">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_layout"
+        style="@style/SimpleEditTextStyle"
+        android:hint="@string/enter_name_city" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/passwordToggle"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="end|center"
+        android:button="@drawable/drawable_password_toggle"
+        android:visibility="gone"
+        tools:visibility="visible" />
+</FrameLayout>

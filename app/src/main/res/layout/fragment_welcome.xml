@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background">
+
+    <kg.autojuuguch.automoikakg.ui.views.ToolbarLayoutView
+        android:id="@+id/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:toolbarText="@string/auth_text" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/top_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.24" />
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="@dimen/city_fragment_logo_width"
+        android:layout_height="@dimen/city_fragment_logo_height"
+        android:src="@drawable/ic_app_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_guideline" />
+
+
+    <TextView
+        android:id="@+id/tv_welcome"
+        style="@style/TextStyle.Bold"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_default"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:letterSpacing="-0.02"
+        android:text="@string/welcome_user_text"
+        android:textColor="@color/app_main_color"
+        android:textSize="22sp"
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
+
+
+    <kg.autojuuguch.automoikakg.ui.views.CustomProgressBar
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_welcome"
+        app:progressColor="@color/blue"
+        app:progressSize="40dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

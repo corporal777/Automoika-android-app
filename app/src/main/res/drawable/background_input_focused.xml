@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?><!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    <item>-->
+<!--        <shape>-->
+<!--            <padding-->
+<!--                android:left="@dimen/margin_horizontal_default"-->
+<!--                android:right="@dimen/margin_horizontal_default" />-->
+<!--            <solid android:color="@color/input_focused_background"/>-->
+<!--            <corners android:radius="12dp" />-->
+<!--        </shape>-->
+<!--    </item>-->
+<!--</layer-list>-->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <padding
+        android:left="@dimen/margin_horizontal_default"
+        android:right="@dimen/margin_horizontal_default" />
+    <solid android:color="@color/input_focused_background" />
+    <corners android:radius="12dp" />
+</shape>

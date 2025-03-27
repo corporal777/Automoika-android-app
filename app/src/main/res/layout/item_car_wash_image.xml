@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
+    android:orientation="vertical"
+    android:paddingBottom="20dp">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivImageDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/car_wash_detail_image_height"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/img_test" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#33000000"
+        app:layout_constraintBottom_toBottomOf="@id/ivImageDetail"
+        app:layout_constraintTop_toTopOf="@id/ivImageDetail" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#66194C5F"
+        app:layout_constraintBottom_toBottomOf="@id/ivImageDetail"
+        app:layout_constraintTop_toTopOf="@id/ivImageDetail" />
+
+
+    <View
+        android:id="@+id/imageShadow"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/background_gradient_car_wash_image"
+        app:layout_constraintBottom_toBottomOf="@id/ivImageDetail" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvName"
+        style="@style/TextStyle.Bold"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="25dp"
+        android:textSize="@dimen/text_size_twenty_two"
+        app:layout_constraintTop_toTopOf="@id/imageShadow"
+        tools:text="Автомойка - FormaCar" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAddress"
+        style="@style/TextStyle.Semibold"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="10dp"
+        android:textSize="@dimen/text_size_sixteen"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        tools:text="Краснодарский край, г. Сочи" />
+
+    <TextView
+        android:id="@+id/tvCarWashBoxes"
+        style="@style/TextStyle.Semibold"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/text_boxes"
+        android:textSize="@dimen/text_size_fifteen"
+        app:layout_constraintTop_toBottomOf="@id/tvAddress" />
+
+
+    <LinearLayout
+        android:id="@+id/ln_boxes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tvCarWashBoxes">
+
+
+        <kg.autojuuguch.automoikakg.ui.views.BoxView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/view_box_background_green" />
+
+        <kg.autojuuguch.automoikakg.ui.views.BoxView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/view_box_background_green" />
+
+        <kg.autojuuguch.automoikakg.ui.views.BoxView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/view_box_background_green" />
+
+        <kg.autojuuguch.automoikakg.ui.views.BoxView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/view_box_background_green" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCall"
+        style="@style/ButtonStyle.Blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/text_call"
+        app:layout_constraintTop_toBottomOf="@+id/ln_boxes" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDescription"
+        style="@style/TextStyle.Text"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="30dp"
+        android:textSize="@dimen/text_size_fifteen"
+        app:layout_constraintTop_toBottomOf="@id/btnCall"
+        tools:text="@string/test_text" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/contactsGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.29" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPhoneTitle"
+        style="@style/TextStyle.Text"
+        android:layout_width="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="25dp"
+        android:text="Телефон:"
+        android:textColor="@color/color_of_textview_lighter"
+        android:textSize="@dimen/text_size_sixteen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPhone"
+        style="@style/TextStyle.Semibold"
+        android:layout_width="wrap_content"
+        android:background="@drawable/btn_background_text"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/text_size_sixteen"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvPhoneTitle"
+        app:layout_constraintStart_toEndOf="@id/contactsGuideline"
+        tools:text="+996 508 13 86 91" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvWhatsAppTitle"
+        style="@style/TextStyle.Text"
+        android:layout_width="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="10dp"
+        android:text="Whatsapp:"
+        android:textColor="@color/color_of_textview_lighter"
+        android:textSize="@dimen/text_size_sixteen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPhoneTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvWhatsApp"
+        style="@style/TextStyle.Semibold"
+        android:layout_width="wrap_content"
+        android:background="@drawable/btn_background_text"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/text_size_sixteen"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvWhatsAppTitle"
+        app:layout_constraintStart_toEndOf="@id/contactsGuideline"
+        tools:text="+996 508 13 86 91" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvInstagramTitle"
+        style="@style/TextStyle.Text"
+        android:layout_width="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="10dp"
+        android:text="Instagram:"
+        android:textColor="@color/color_of_textview_lighter"
+        android:textSize="@dimen/text_size_sixteen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvWhatsApp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvInstagram"
+        style="@style/TextStyle.Semibold"
+        android:layout_width="wrap_content"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/text_size_sixteen"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvInstagramTitle"
+        app:layout_constraintStart_toEndOf="@id/contactsGuideline"
+        tools:text="timeoff" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

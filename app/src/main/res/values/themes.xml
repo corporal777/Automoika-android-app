@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme.AutoMoikaKg" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:textColor">@color/black</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item name="android:statusBarColor">@color/main_background</item>
+        <item name="android:navigationBarColor">@color/bottom_navigation_bar_color</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">@color/main_background</item>
+
+        <item name="android:windowAnimationStyle">@style/WindowAnimationStyle</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+    </style>
+
+    <style name="SplashTheme.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/main_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/AppTheme.AutoMoikaKg</item>
+    </style>
+
+    <style name="WindowAnimationStyle">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_open_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_open_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/background_bottom_sheet</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:navigationBarColor">@color/bottom_navigation_bar_color</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="TransparentBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/white</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="android:windowAnimationStyle">@style/Animation.YourApp.AlertDialog</item>
+    </style>
+
+    <style name="Animation.YourApp.AlertDialog" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit_anim</item>
+    </style>
+
+    <style name="BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemIconTint">@drawable/bottom_navigation_bar_items_color</item>
+        <item name="itemTextColor">@drawable/bottom_navigation_bar_items_color</item>
+        <item name="itemIconSize">@dimen/bottom_navigation_bar_icons_size</item>
+        <item name="background">@color/bottom_navigation_bar_color</item>
+        <item name="itemBackground">@color/bottom_navigation_bar_color</item>
+        <item name="elevation">0dp</item>
+        <item name="android:elevation">0dp</item>
+        <item name="itemTextAppearanceActive">@style/BottomNavigationView.TextAppearance</item>
+        <item name="itemTextAppearanceInactive">@style/BottomNavigationView.TextAppearance</item>
+    </style>
+
+    <style name="BottomNavigationView.TextAppearance" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">13sp</item>
+        <item name="android:itemPadding">0dp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:fontFamily">@font/sf_pro_text_semibold</item>
+    </style>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="boxBackgroundMode">filled</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxBackgroundColor">@color/input_unfocused_background</item>
+        <item name="boxStrokeColor">@color/input_unfocused_background</item>
+        <item name="hintEnabled">false</item>
+        <item name="errorTextColor">@color/error_toast_color</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="cursorColor">@color/app_main_color</item>
+    </style>
+
+    <style name="TextInputEditTextStyle">
+        <item name="android:fontFamily">@font/sf_pro_text</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:minHeight">@dimen/edit_text_min_height</item>
+        <item name="android:textSize">@dimen/edit_text_size</item>
+        <item name="android:textColorHint">@color/input_hint_text_color</item>
+        <item name="android:backgroundTint">@color/background_input_edit_text</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:inputType">textCapSentences</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:theme">@style/EditTextSelectorTheme</item>
+        <item name="android:colorControlActivated">@color/app_main_color</item>
+    </style>
+
+    <style name="AutoCompleteTextStyle" parent="TextInputEditTextStyle">
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:paddingStart">@dimen/margin_fif_teen</item>
+        <item name="android:paddingEnd">@dimen/margin_fif_teen</item>
+    </style>
+
+
+    <style name="SearchEditTextStyle" parent="TextInputEditTextStyle">
+        <item name="android:fontFamily">@font/sf_pro_text</item>
+        <item name="android:drawableStart">@drawable/ic_search</item>
+        <item name="android:drawablePadding">5dp</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="SimpleEditTextStyle" parent="TextInputEditTextStyle">
+        <item name="android:fontFamily">@font/sf_pro_text</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="EditTextSelectorTheme">
+        <item name="colorControlActivated">@color/app_main_color</item>
+        <item name="android:colorControlActivated">@color/app_main_color</item>
+        <item name="colorPrimary">@color/app_main_color</item>
+        <item name="android:colorPrimary">@color/app_main_color</item>
+        <item name="colorAccent">@color/app_main_color</item>
+        <item name="android:colorAccent">@color/app_main_color</item>
+        <!--        <item name="android:colorControlNormal">@color/input_border_color</item>-->
+    </style>
+
+
+    <style name="TextStyle">
+        <item name="android:textColorLink">@color/blue</item>
+        <item name="android:freezesText">true</item>
+        <item name="android:importantForAccessibility">no</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextStyle.Text">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/sf_pro_text</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextStyle.Regular">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/sf_pro_text_regular</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextStyle.Medium">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/sf_pro_text_medium</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextStyle.Semibold">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/sf_pro_text_semibold</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextStyle.Bold">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/sf_pro_text_bold</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextStyle.ExtraBold">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/sf_pro_text_extra_bold</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextStyle.Click">
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:fontFamily">@font/sf_pro_text_semibold</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_fifteen</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:background">@drawable/btn_background_text</item>
+    </style>
+
+    <style name="TextStyle.Title" parent="TextStyle.Regular">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/input_title_text_color</item>
+    </style>
+
+
+    <style name="ButtonStyle">
+        <item name="android:importantForAccessibility">no</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">@dimen/action_button_text_size</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:fontFamily">@font/sf_pro_text_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:minHeight">@dimen/action_button_min_height</item>
+    </style>
+
+    <style name="ButtonStyle.White">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:background">@drawable/btn_background_white</item>
+    </style>
+
+    <style name="ButtonStyle.Blue">
+        <item name="android:background">@drawable/btn_background_blue</item>
+    </style>
+
+    <style name="ButtonStyle.BlueSmall">
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/sf_pro_text_semibold</item>
+        <item name="android:background">@drawable/btn_background_blue</item>
+        <item name="android:minHeight">35dp</item>
+    </style>
+
+    <style name="ButtonStyle.Gray">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:background">@drawable/btn_background_gray</item>
+    </style>
+
+    <style name="ButtonStyle.DeepBlue">
+        <item name="android:background">@drawable/btn_background_deep_blue</item>
+    </style>
+
+    <style name="BtnLoadingStyle">
+        <item name="buttonBackground">@drawable/btn_background_blue</item>
+        <item name="buttonMinHeight">@dimen/action_button_min_height</item>
+        <item name="buttonTextSize">@dimen/action_button_text_size</item>
+    </style>
+</resources>

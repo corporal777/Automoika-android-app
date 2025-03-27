@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#949494</color>
+    <color name="colorAccent">#022B54</color>
+
+
+    <!--    <color name="main_background">#FBFBFB</color>-->
+    <color name="main_background">#FFFFFF</color>
+
+    <color name="app_main_color">#022B54</color>
+
+    <color name="bottom_nav_item_selected_color">#0071E3</color>
+    <color name="bottom_nav_item_default_color">#CC79798A</color>
+
+    <!--    <color name="bottom_navigation_bar_color">#B3F2F2FF</color>-->
+    <!--    <color name="input_focused_background">#E6D6D6E5</color>-->
+    <!--    <color name="input_disabled_background">#80D6D6E5</color>-->
+    <!--    <color name="input_unfocused_background">#99D6D6E5</color>-->
+
+    <color name="bottom_navigation_bar_color">#144C7BAF</color>
+    <color name="input_focused_background">#404C7BAF</color>
+    <color name="input_disabled_background">#80D6D6E5</color>
+    <color name="input_unfocused_background">#2B4C7BAF</color>
+
+
+    <color name="error_toast_color">#A00000</color>
+    <color name="color_of_textview_border">#878787</color>
+    <color name="color_of_textview_lighter">#AFAFAF</color>
+    <color name="blue_dark_image_gradient">#6634899B</color>
+    <color name="blue_dark_avatar_gradient">#80043646</color>
+
+    <color name="input_title_text_color">#878787</color>
+    <color name="input_hint_text_color">#9A99A2</color>
+    <color name="title_text_error_red">#F42223</color>
+
+
+    <color name="half_trans">#B3000000</color>
+    <color name="trans">#00000000</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="yellow">#FCE305</color>
+    <color name="blue">#0071E3</color>
+    <color name="blue_alpha">#800071E3</color>
+    <color name="gray">#B3D6D6E5</color>
+
+
+    <color name="code_view_empty_border_color">#333C3C43</color>
+    <color name="code_view_entered_border_color">#7D9D57</color>
+    <color name="code_view_input_border_color">#0071E3</color>
+    <color name="code_view_empty_background_color">#F2F2F7</color>
+
+    <color name="password_errors_text_color">#80000000</color>
+    <color name="password_errors_text_color_valid">#8DB75B</color>
+</resources>

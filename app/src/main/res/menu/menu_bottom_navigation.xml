@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/main"
+        android:icon="@drawable/ic_bottom_nav_main"
+        android:title="Главная"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/map"
+        android:icon="@drawable/ic_bottom_nav_map"
+        android:title="На карте"
+        app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/favorites"
+        android:icon="@drawable/ic_bottom_nav_favorite"
+        android:title="Избранное"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_bottom_nav_profile"
+        android:title="Профиль"
+        app:showAsAction="always" />
+
+</menu>
