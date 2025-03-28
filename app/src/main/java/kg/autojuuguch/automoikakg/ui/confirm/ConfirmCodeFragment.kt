@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.view.ScrollingView
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
@@ -34,7 +35,6 @@ class ConfirmCodeFragment : BaseToolbarFragment<FragmentConfirmCodeBinding>() {
         super.onCreate(savedInstanceState)
         viewModel.phone = args.phone
         viewModel.user = args.user
-        viewModel.login = args.login
         viewModel.sendCode(permissionsUtil)
     }
 
@@ -62,10 +62,7 @@ class ConfirmCodeFragment : BaseToolbarFragment<FragmentConfirmCodeBinding>() {
 
     private fun observeCodeState() {
         viewModel.navigateUp.observe { navigateUpResult() }
-        viewModel.welcome.observe {
-            if (it) showWelcomeFragment()
-            else showRegisterMainFragment()
-        }
+        viewModel.welcome.observe { showWelcomeFragment() }
         viewModel.codeError.observe { mBinding.tvCodeError.isVisibleFastAnim = it }
         viewModel.permissionError.observe { showPermissionIsNeed() }
     }
@@ -103,10 +100,7 @@ class ConfirmCodeFragment : BaseToolbarFragment<FragmentConfirmCodeBinding>() {
         findNavController().navigate(R.id.welcome_fragment)
     }
 
-    private fun showRegisterMainFragment() {
-        val options = navOptions { popUpTo(R.id.confirm_code_fragment) { inclusive = true } }
-        findNavController().navigate(R.id.register_main_fragment, null, options)
-    }
+
 
     private fun showPermissionIsNeed() {
         DefaultAlertDialog(
@@ -127,8 +121,8 @@ class ConfirmCodeFragment : BaseToolbarFragment<FragmentConfirmCodeBinding>() {
         super.onDestroy()
     }
 
-    override fun toolbarView(): ToolbarLayoutView = mBinding.layoutToolbar
-    override fun scrollingView(): View = mBinding.scrollView
+    override val title: CharSequence by lazy { getString(R.string.confirm_phone_text) }
+    override fun scrollingView(): ScrollingView = mBinding.scrollView
     override fun animationType(): AnimType = AnimType.FADE
     override fun binding() = FragmentConfirmCodeBinding::class.java
     override fun layout(): Int = R.layout.fragment_confirm_code

@@ -44,43 +44,27 @@ class AuthorizationFragment : BaseToolbarFragment<FragmentAuthorizationBinding>(
         super.onViewCreated(view, savedInstanceState)
         mBinding.apply {
             btnLogin.setOnClickListener { showLoginFragment() }
-            btnRegister.setOnClickListener { showRegisterBottomSheet() }
+            btnRegister.setOnClickListener { showRegisterFragment() }
             btnGoogle.setOnClickListener { googleAuthUtils.signInWithGoogle() }
         }
         observeLoading()
     }
 
     private fun observeLoading() {
-        viewModel.buttonLoading.observe(viewLifecycleOwner) {
-            mBinding.btnGoogle.showProgressLoading(it)
-        }
-        viewModel.googleAccount.observe(viewLifecycleOwner) {
+        viewModel.buttonLoading.observe { mBinding.btnGoogle.showProgressLoading(it) }
+        viewModel.googleAccount.observe {
             if (it) showWelcomeFragment()
             else showErrorMessage(R.string.google_account_not_found)
         }
     }
 
 
-    private fun showRegisterBottomSheet() {
-        AuthBottomSheet(requireContext(), AuthType.REGISTER)
-            .setLoginCallback { showUserRegisterFragment(true) }
-            .setRegisterCallback { showCarWashRegisterFragment() }
-            .show()
-    }
-
     private fun showLoginFragment() {
         findNavController().navigate(R.id.login_fragment)
     }
 
-    private fun showUserRegisterFragment(isReg: Boolean) {
-        val bundle = bundleOf("fromUserReg" to isReg)
-        findNavController().navigate(R.id.user_register_fragment, bundle)
-    }
-
-    private fun showCarWashRegisterFragment() {
-        if (viewModel.isUserAuthorized())
-            findNavController().navigate(R.id.register_main_fragment)
-        else showUserRegisterFragment(false)
+    private fun showRegisterFragment() {
+        findNavController().navigate(R.id.user_register_fragment)
     }
 
     private fun showWelcomeFragment() {
@@ -92,8 +76,7 @@ class AuthorizationFragment : BaseToolbarFragment<FragmentAuthorizationBinding>(
         super.onDestroy()
     }
 
-
-    override fun toolbarView(): ToolbarLayoutView = mBinding.layoutToolbar
+    override val title: CharSequence by lazy { getString(R.string.auth_text) }
     override fun animationType(): AnimType = AnimType.FADE
     override fun binding() = FragmentAuthorizationBinding::class.java
     override fun layout(): Int = R.layout.fragment_authorization

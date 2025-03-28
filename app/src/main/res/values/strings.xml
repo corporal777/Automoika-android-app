@@ -152,5 +152,6 @@
     <string name="login_password_text">Логин и пароль</string>
     <string name="register_login_info_text">Введите ваше имя, номер телефона и придумайте пароль.</string>
     <string name="are_you_sure_exit_text">Вы уверены, что хотите выйти? Все заполненные данные будут утеряны.</string>
+
     <string name="not_filled">Не указано</string>
 </resources>

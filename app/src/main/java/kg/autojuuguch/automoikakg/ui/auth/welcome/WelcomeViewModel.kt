@@ -35,6 +35,6 @@ class WelcomeViewModel(private val appData: AppData) : BaseViewModel(appData) {
     }
 
     fun getUserName(): String {
-        return appData.getUser()?.firstName ?: ""
+        return appData.getUser()?.name ?: ""
     }
 }

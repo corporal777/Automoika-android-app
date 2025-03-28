@@ -8,6 +8,7 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import androidx.core.view.isVisible
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.card.MaterialCardView
 import kg.autojuuguch.automoikakg.R
 import kg.autojuuguch.automoikakg.databinding.LayoutLoadingButtonBinding
@@ -17,14 +18,14 @@ import kg.autojuuguch.automoikakg.extensions.dp
 import kg.autojuuguch.automoikakg.extensions.getDrawable
 import kotlin.math.abs
 
-class ToolbarLayoutView : MaterialCardView {
+class ToolbarLayoutView : AppBarLayout {
 
-    constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         obtainAttributes(attrs)
     }
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
 
     private fun obtainAttributes(attrs: AttributeSet?) {
@@ -47,13 +48,21 @@ class ToolbarLayoutView : MaterialCardView {
 
 
     init {
-        radius = 0f
-        cardShadow = 0f
+
     }
 
 
+    fun setToolbarTitle(text : CharSequence){
+        binding.tvToolbarTitle.text = text
+    }
+
     fun getBackButton() = binding.ivBack
     fun setToolbarShadow(offset : Int){
-        cardShadow = offset.toFloat()
+        if (offset.toFloat() == elevation) return
+        else if (offset.toFloat() <= 0f) elevation = 0f
+        else {
+            val shadow = abs(offset / 20f)
+            elevation = if (shadow <= 8f) shadow else 8f
+        }
     }
 }

@@ -9,7 +9,7 @@ import kg.autojuuguch.automoikakg.data.model.UserModel
 import okhttp3.RequestBody
 
 interface UserRepository {
-    fun getUser(id : String): Maybe<UserModel>
+    fun getUser(id : String?): Maybe<UserModel>
     fun registerUser(body: UserRegisterBody) : Completable
     fun registerGoogleUser(body: GoogleUserBody) : Completable
 }

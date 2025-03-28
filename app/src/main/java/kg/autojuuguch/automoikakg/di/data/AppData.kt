@@ -2,8 +2,6 @@ package kg.autojuuguch.automoikakg.di.data
 
 import android.content.Context
 import io.reactivex.subjects.PublishSubject
-import kg.autojuuguch.automoikakg.data.model.CarWashDetailModel
-import kg.autojuuguch.automoikakg.data.model.CarWashOwnerModel
 import kg.autojuuguch.automoikakg.data.model.UserModel
 
 class AppData(private val appPrefs: AppPrefs, private val context: Context) {
@@ -50,18 +48,15 @@ class AppData(private val appPrefs: AppPrefs, private val context: Context) {
     private val codeSubject = PublishSubject.create<String>()
 
     private var userModel : UserModel? = null
-    private var carWashModel : CarWashOwnerModel? = null
 
-    fun setUser(user : UserModel){
+
+    fun setUser(user : UserModel)  {
         userId = user.id
         userModel = user
     }
-
     fun getUser() = userModel
 
-    fun setCarWash(model: CarWashOwnerModel){
-        carWashModel = model
-    }
+
 
     fun getUserCity() = this.userTown
     fun setUserCity(town: String) = this.let { it.userTown = town }

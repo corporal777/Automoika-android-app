@@ -28,17 +28,13 @@ class AuthRepositoryImpl(private val api: ApiService, private val appData: AppDa
         return api.login(phone).doOnSuccess { appData.setUser(it) }.ignoreElement()
     }
 
-    override fun checkLogin(phone: LoginBody): Maybe<String> = api.checkLogin(phone)
-
 
     override fun checkPhoneExist(phone: String): Maybe<Boolean> {
-        return api.checkPhoneExists(mapOf("phone" to phone))
-            .map { it != "-1" }
+        return api.checkPhoneExists(mapOf("phone" to phone)).map { it != "-1" }
     }
 
     override fun sendConfirmationCode(phone: String): Completable {
         return getFcmToken().flatMapCompletable { api.sendCode(PhoneBody(phone, it)) }
-            .withDelay(1000)
     }
 
     override fun confirmCode(code: String, phone: String): Completable {

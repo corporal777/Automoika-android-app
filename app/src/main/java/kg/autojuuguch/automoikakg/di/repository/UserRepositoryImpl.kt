@@ -12,8 +12,8 @@ import okhttp3.RequestBody
 
 class UserRepositoryImpl(private val api: ApiService, private val appData: AppData) : UserRepository {
 
-    override fun getUser(id : String): Maybe<UserModel> {
-        return api.getUserById(id)
+    override fun getUser(id : String?): Maybe<UserModel> {
+        return api.getUserById(id ?: "0")
     }
 
     override fun registerUser(body: UserRegisterBody): Completable {

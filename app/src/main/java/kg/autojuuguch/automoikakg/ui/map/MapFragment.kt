@@ -33,7 +33,6 @@ import kg.autojuuguch.automoikakg.extensions.isVisibleAnim
 import kg.autojuuguch.automoikakg.extensions.isVisibleFastAnim
 import kg.autojuuguch.automoikakg.extensions.mapObjectTapListener
 import kg.autojuuguch.automoikakg.extensions.objectTapListener
-import kg.autojuuguch.automoikakg.ui.auth.registerCarWash.contacts.RegisterContactsFragmentArgs
 import kg.autojuuguch.automoikakg.ui.base.BaseVBFragment
 import kg.autojuuguch.automoikakg.ui.dialogs.DefaultAlertDialog
 import kg.autojuuguch.automoikakg.utils.LOG_TAG

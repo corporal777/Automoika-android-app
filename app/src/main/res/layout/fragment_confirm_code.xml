@@ -6,12 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/main_background">
 
-    <kg.autojuuguch.automoikakg.ui.views.ToolbarLayoutView
-        android:id="@+id/layout_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintTop_toTopOf="parent"
-        app:toolbarText="@string/confirm_phone_text" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_view"
@@ -19,7 +13,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@id/btnConfirm"
-        app:layout_constraintTop_toBottomOf="@id/layout_toolbar">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/ln_content"

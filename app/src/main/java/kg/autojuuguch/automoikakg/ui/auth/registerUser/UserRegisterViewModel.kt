@@ -119,5 +119,4 @@ class UserRegisterViewModel(
     fun getPhone() = userBody.phone
     fun getBody() = userBody
     fun isAgree() = isAgree
-    fun setBody(isReg: Boolean) = run { userBody.fromUserReq = isReg }
 }

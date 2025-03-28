@@ -1,17 +1,14 @@
 package kg.autojuuguch.automoikakg.di.module
 
 import kg.autojuuguch.automoikakg.ui.auth.authorization.AuthorizationViewModel
+import kg.autojuuguch.automoikakg.ui.auth.login.LoginViewModel
+import kg.autojuuguch.automoikakg.ui.auth.registerUser.UserRegisterViewModel
+import kg.autojuuguch.automoikakg.ui.auth.welcome.WelcomeViewModel
 import kg.autojuuguch.automoikakg.ui.city.CityViewModel
 import kg.autojuuguch.automoikakg.ui.confirm.ConfirmCodeViewModel
 import kg.autojuuguch.automoikakg.ui.detail.CarWashDetailViewModel
-import kg.autojuuguch.automoikakg.ui.home.HomeViewModel
-import kg.autojuuguch.automoikakg.ui.auth.login.LoginViewModel
-import kg.autojuuguch.automoikakg.ui.auth.registerCarWash.contacts.RegisterContactsViewModel
-import kg.autojuuguch.automoikakg.ui.auth.registerCarWash.login.RegisterLoginViewModel
-import kg.autojuuguch.automoikakg.ui.auth.registerCarWash.main.RegisterMainViewModel
-import kg.autojuuguch.automoikakg.ui.auth.registerUser.UserRegisterViewModel
-import kg.autojuuguch.automoikakg.ui.auth.welcome.WelcomeViewModel
 import kg.autojuuguch.automoikakg.ui.gallery.GalleryViewModel
+import kg.autojuuguch.automoikakg.ui.home.HomeViewModel
 import kg.autojuuguch.automoikakg.ui.main.MainViewModel
 import kg.autojuuguch.automoikakg.ui.map.MapViewModel
 import kg.autojuuguch.automoikakg.ui.map.address.MapAddressViewModel
@@ -33,8 +30,4 @@ val viewModelModule = module {
     viewModel { UserRegisterViewModel(get(), get()) }
     viewModel { WelcomeViewModel(get()) }
     viewModel { SplashViewModel(get()) }
-    viewModel { RegisterMainViewModel(get()) }
-    viewModel { RegisterLoginViewModel(get(), get()) }
-    viewModel { RegisterContactsViewModel(get(), get(), get()) }
-
 }

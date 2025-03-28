@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.view.ScrollingView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.clearFragmentResultListener
 import androidx.fragment.app.setFragmentResultListener
@@ -35,7 +36,6 @@ import java.util.concurrent.TimeUnit
 
 class LoginFragment : BaseToolbarFragment<FragmentLoginBinding>() {
 
-    private val args: LoginFragmentArgs by navArgs()
     override val viewModel by viewModel<LoginViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,8 +51,7 @@ class LoginFragment : BaseToolbarFragment<FragmentLoginBinding>() {
 
     private fun observeLogin() {
         viewModel.loginSuccess.observe(viewLifecycleOwner) {
-            if (args.fromUserReg) showCarWashRegisterFragment()
-            else showWelcomeFragment()
+            showWelcomeFragment()
         }
         viewModel.phoneError.observe(viewLifecycleOwner) {
             showLoginError(it)
@@ -94,12 +93,8 @@ class LoginFragment : BaseToolbarFragment<FragmentLoginBinding>() {
         findNavController().navigate(R.id.welcome_fragment)
     }
 
-    private fun showCarWashRegisterFragment() {
-        findNavController().navigate(R.id.register_main_fragment)
-    }
-
-    override fun scrollingView(): View = mBinding.scrollView
-    override fun toolbarView(): ToolbarLayoutView = mBinding.layoutToolbar
+    override val title: CharSequence by lazy { getString(R.string.auth_text) }
+    override fun scrollingView(): ScrollingView = mBinding.scrollView
     override fun animationType(): AnimType = AnimType.FADE
     override fun binding() = FragmentLoginBinding::class.java
     override fun layout(): Int = R.layout.fragment_login

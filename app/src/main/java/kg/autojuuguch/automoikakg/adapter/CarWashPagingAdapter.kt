@@ -93,23 +93,21 @@ class CarWashPagingAdapter(val onClick: (id: String) -> Unit) :
         }
 
         private fun createBoxes(free: String, count: Int) {
-            val boxes = free.split(",")
             viewBinding.lnBoxes.apply {
                 removeAllViews()
                 for (index in 0 until count.toInt()) {
                     val box = (index + 1).toString()
-                    val isContains = boxes.contains(box)
+                    val isContains = free.contains(box)
                     addView(BoxView(context).setData(box, isContains))
                 }
             }
         }
 
         fun updateBoxes(free: String, count: Int) {
-            val boxes = free.split(",")
             if (viewBinding.lnBoxes.childCount <= 0) createBoxes(free, count)
             else viewBinding.lnBoxes.children.forEach {
                 if (it is BoxView) {
-                    val isContains = boxes.contains(it.text)
+                    val isContains = free.contains(it.text)
                     it.changeBackground(isContains)
                 }
             }

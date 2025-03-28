@@ -17,8 +17,7 @@ data class UserRegisterBody(
     var id : String? = null,
     var name: String = "",
     var phone: String = "",
-    var password: String = "",
-    var fromUserReq : Boolean = true,
+    var password: String = ""
 ) : Parcelable {
 
 

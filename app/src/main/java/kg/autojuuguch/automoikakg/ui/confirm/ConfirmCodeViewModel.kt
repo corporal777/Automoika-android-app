@@ -38,7 +38,6 @@ class ConfirmCodeViewModel(
 
     var phone = ""
     var user: UserRegisterBody? = null
-    var login: LoginBody? = null
     private var code = ""
 
     private val _timeLeft = SingleLiveEvent<Int>()
@@ -54,7 +53,7 @@ class ConfirmCodeViewModel(
     val permissionError: LiveData<Unit> get() = _permissionError
 
     val navigateUp = SingleLiveEvent<Unit>()
-    val welcome = SingleLiveEvent<Boolean>()
+    val welcome = SingleLiveEvent<Unit>()
 
 
     private val _codeAutoFill = SingleLiveEvent<String>()
@@ -74,6 +73,7 @@ class ConfirmCodeViewModel(
     fun sendCode(permissionUtils: PermissionUtils) {
         permissionUtils.checkNotificationsPermission { isGranted ->
             if (isGranted) authRepository.sendConfirmationCode(phone)
+                .withDelay(1000)
                 .performOnBackgroundOutOnMain()
                 .withLoading(1)
                 .subscribeSimple(
@@ -95,7 +95,7 @@ class ConfirmCodeViewModel(
                     else _codeError.setValue(true)
                 },
                 onComplete = {
-                    if (user != null) welcome.setValue(user!!.fromUserReq)
+                    if (user != null) welcome.setValue(Unit)
                     else navigateUp.setValue(Unit)
                 }
             )
@@ -128,8 +128,8 @@ class ConfirmCodeViewModel(
     private fun afterConfirmRequest(): Completable {
         return Completable.defer {
             if (user != null) userRepository.registerUser(user!!)
-            else Completable.complete().withDelay(1000)
-        }
+            else Completable.complete()
+        }.withDelay(1000)
     }
 
 

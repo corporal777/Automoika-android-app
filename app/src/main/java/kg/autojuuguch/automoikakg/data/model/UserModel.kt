@@ -7,13 +7,11 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class UserModel(
     val id: String,
-    @SerializedName("name")
-    val firstName: String,
+    val name: String,
+    val createdAt : String,
     val image: CarWashDetailImageModel,
-    val login: UserContactsModel,
-    @SerializedName("passwordIsAbsent")
     val passwordAbsent : Boolean,
-    val account : UserTypeModel
+    val login: UserContactsModel
 ) : Parcelable
 
 

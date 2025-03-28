@@ -31,7 +31,7 @@ import kg.autojuuguch.automoikakg.ui.views.LoadingButton
 
 abstract class BaseVBFragment<VB : ViewBinding> : Fragment() {
 
-    private var mActivity: BaseActivity? = null
+    var mActivity: BaseActivity? = null
 
     abstract fun binding(): Class<VB>
     private val localBinding get() = binding()
@@ -96,8 +96,7 @@ abstract class BaseVBFragment<VB : ViewBinding> : Fragment() {
     }
 
     fun navigateUp() {
-        mActivity?.doVibration()
-        findNavController().navigateUp()
+        mActivity?.navigateUpVibration()
     }
 
 

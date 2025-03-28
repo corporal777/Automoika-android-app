@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
+import androidx.core.view.ScrollingView
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
@@ -45,17 +46,12 @@ import org.koin.core.parameter.parametersOf
 class UserRegisterFragment : BaseToolbarFragment<FragmentUserRegisterShortBinding>() {
 
     override val viewModel by viewModel<UserRegisterViewModel>()
-    private val args : UserRegisterFragmentArgs by navArgs()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.setBody(args.fromUserReg)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.apply {
-            etFirstName.onAfterTextChanged { viewModel.onChangeFirstName(it.toString()) }
+            etName.onAfterTextChanged { viewModel.onChangeFirstName(it.toString()) }
             etLogin.onInputTextChanged { viewModel.onChangePhone(it.toString()) }
             viewPassword.onPasswordChanged { viewModel.onChangePassword(it) }
             tvAgreement.apply {
@@ -64,10 +60,7 @@ class UserRegisterFragment : BaseToolbarFragment<FragmentUserRegisterShortBindin
                 movementMethod = LinkMovementMethod.getInstance()
                 text = getPrivacyPoliticsText()
             }
-            tvGoLogin.apply {
-                isInvisible = args.fromUserReg
-                setClickListener { showLoginFragment() }
-            }
+
             btnContinue.setClickListener { viewModel.checkPhoneIsUnique() }
         }
         observeButtonState()
@@ -111,19 +104,15 @@ class UserRegisterFragment : BaseToolbarFragment<FragmentUserRegisterShortBindin
         ).setSelectCallback {  }
     }
 
-    private fun showLoginFragment() {
-        val bundle = bundleOf("fromUserReg" to true)
-        findNavController().navigate(R.id.login_fragment, bundle)
-    }
 
     private fun showConfirmCodeFragment() {
         val bundle = bundleOf("phone" to viewModel.getPhone(), "user" to viewModel.getBody())
         findNavController().navigate(R.id.confirm_code_fragment, bundle)
     }
 
+    override val title: CharSequence by lazy { getString(R.string.register_text) }
     override fun animationType(): AnimType = AnimType.FADE
-    override fun toolbarView(): ToolbarLayoutView = mBinding.layoutToolbar
-    override fun scrollingView(): View = mBinding.scrollView
+    override fun scrollingView(): ScrollingView = mBinding.scrollView
     override fun binding() = FragmentUserRegisterShortBinding::class.java
     override fun layout(): Int = R.layout.fragment_user_register_short
 }

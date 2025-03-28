@@ -15,9 +15,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.yandex.mapkit.MapKitFactory
 import kg.autojuuguch.automoikakg.R
 import kg.autojuuguch.automoikakg.extensions.getFragmentLifecycleCallback
+import kg.autojuuguch.automoikakg.extensions.navigatePopUp
 import kg.autojuuguch.automoikakg.extensions.onBackPressedCallback
+import kg.autojuuguch.automoikakg.extensions.setClickListener
 import kg.autojuuguch.automoikakg.extensions.setSystemBarsAppearance
 import kg.autojuuguch.automoikakg.ui.base.BaseActivity
+import kg.autojuuguch.automoikakg.ui.base.BaseToolbarFragment
 import kg.autojuuguch.automoikakg.ui.home.HomeFragment
 import kg.autojuuguch.automoikakg.ui.map.MapFragment
 import kg.autojuuguch.automoikakg.utils.SYSTEM_UI_LIGHT_NAV_BAR
@@ -30,9 +33,14 @@ class MainActivity : BaseActivity() {
     override val navFragmentsLifecycleCallback = getFragmentLifecycleCallback(
         onFragmentStarted = { f -> setupBackgroundTransparency(f) },
         onFragmentViewCreated = { f ->
-            setupNavBar(f)
             setupNavBarItems(f)
             setupBackgroundImageFragment(f)
+
+            binding.toolbar.apply {
+                isVisible = f is BaseToolbarFragment<*>
+                if (f is BaseToolbarFragment<*>) setToolbarTitle(f.title)
+            }
+
         }
     )
 
@@ -57,6 +65,8 @@ class MainActivity : BaseActivity() {
 
         onBackPressedDispatcher.addCallback(this, backClick)
         viewModel.connectSocket()
+
+        binding.toolbar.getBackButton().setOnClickListener { navigateUpVibration() }
     }
 
 
@@ -99,35 +109,30 @@ class MainActivity : BaseActivity() {
     private fun setupNavBarItems(f: Fragment) {
         val menuItem: (Int) -> MenuItem = { binding.bottomNavView.menu.findItem(it) }
         when (f) {
-            is HomeFragment -> menuItem.invoke(R.id.main).isChecked = true
-            is MapFragment -> menuItem.invoke(R.id.map).isChecked = true
+            is HomeFragment -> {
+                showNavigationBar()
+                menuItem.invoke(R.id.main).isChecked = true
+            }
+            is MapFragment -> {
+                showNavigationBar()
+                menuItem.invoke(R.id.map).isChecked = true
+            }
             //is ProfileFragment -> menuItem.invoke(R.id.profile).isChecked = true
             //is ChatListTabsFragment -> menuItem.invoke(R.id.chats).isChecked = true
-            //is NotificationsListFragment -> menuItem.invoke(R.id.notification).isChecked = true
-            //is MyEventsFragment -> menuItem.invoke(R.id.my_events).isChecked = true
-        }
-    }
 
-    private fun setupNavBar(f: Fragment) {
-        when (f) {
-            is HomeFragment -> showNavigationBar()
-            is MapFragment -> {
-                if (!isPreviousDestination(R.id.register_contacts_fragment)) showNavigationBar()
-            }
             else -> hideNavigationBar()
         }
     }
 
-    private fun navigateUp() = findNavController().navigateUp()
+
+
 
     private fun showCityFragment(){
-        val options = navOptions { popUpTo(R.id.main_navigation) { inclusive = true } }
-        findNavController().navigate(R.id.city_fragment,null, options)
+        findNavController().navigatePopUp(R.id.city_fragment)
     }
 
     private fun showHomeFragment(){
-        val options = navOptions { popUpTo(R.id.main_navigation) { inclusive = true } }
-        findNavController().navigate(R.id.home_fragment,null, options)
+        findNavController().navigatePopUp(R.id.home_fragment)
     }
 
     private fun showLoginFragment(){
@@ -154,5 +159,9 @@ class MainActivity : BaseActivity() {
 
     private fun hideSplashScreen() {
         splashScreen.setKeepOnScreenCondition { viewModel.isLoading.value }
+    }
+
+    fun setAppbarElevation(offset : Int){
+        binding.toolbar.setToolbarShadow(offset)
     }
 }

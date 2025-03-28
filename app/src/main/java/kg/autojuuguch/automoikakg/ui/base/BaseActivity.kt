@@ -91,6 +91,13 @@ abstract class BaseActivity : FragmentActivity() {
         }
     }
 
+    fun navigateUp() = findNavController().navigateUp()
+
+    fun navigateUpVibration(){
+        doVibration()
+        navigateUp()
+    }
+
 
     private fun registerFragmentLifecycleCallback() {
         getNavHostFragment().childFragmentManager

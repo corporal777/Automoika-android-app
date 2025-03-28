@@ -12,10 +12,8 @@ import kg.autojuuguch.automoikakg.data.body.LoginBody
 import kg.autojuuguch.automoikakg.data.body.PhoneBody
 import kg.autojuuguch.automoikakg.data.body.UserRegisterBody
 import kg.autojuuguch.automoikakg.data.model.CarWashDetailModel
-import kg.autojuuguch.automoikakg.data.model.CarWashOwnerModel
 import kg.autojuuguch.automoikakg.data.model.CarWashReviewModel
 import kg.autojuuguch.automoikakg.data.model.CityLocationModel
-import kg.autojuuguch.automoikakg.data.model.LoginModel
 import kg.autojuuguch.automoikakg.data.model.UserModel
 import kg.autojuuguch.automoikakg.data.model.YandexGeoModel
 import okhttp3.RequestBody
@@ -30,11 +28,8 @@ import retrofit2.http.QueryMap
 interface ApiService {
 
     //auth
-    @POST("v1/login")
+    @POST("v1/login-user")
     fun login(@Body map: LoginBody): Maybe<UserModel>
-
-    @POST("v1/check-login")
-    fun checkLogin(@Body map: LoginBody): Maybe<String>
 
     @POST("v1/check-phone-exists")
     fun checkPhoneExists(@Body map: Map<String, String>): Maybe<String>
@@ -67,9 +62,6 @@ interface ApiService {
 
     @GET("v1/car-wash-reviews/{id}")
     fun getCarWashReviews(@Path("id") id: String): Maybe<PaginationResponse<CarWashReviewModel>>
-
-    @POST("v1/create-car-wash")
-    fun registerCarWash(@Body body: RequestBody): Maybe<CarWashOwnerModel>
 
     //location
     @POST("v1/check-user-location")

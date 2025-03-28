@@ -32,7 +32,7 @@ class AuthorizationViewModel(
 
     fun initGoogleAccount(acc: GoogleSignInAccount?) {
         if (acc == null) _googleAccount.setValue(false)
-        else userRepository.getUser(getAccountId(acc) ?: "0")
+        else userRepository.getUser(getAccountId(acc))
             .doOnSuccess { appData.setUser(it) }.ignoreElement()
             .onErrorResumeNext { createUserRequest(it, acc) }
             .withDelay(1000)

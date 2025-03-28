@@ -8,13 +8,24 @@
     tools:context=".ui.main.MainActivity">
 
 
+    <kg.autojuuguch.automoikakg.ui.views.ToolbarLayoutView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="0dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:elevation="0dp"
+        tools:toolbarText="@string/auth_text" />
+
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_behavior=".ui.views.CustomAppBarLayoutBehavior"
         app:navGraph="@navigation/nav_graph" />
 
 
@@ -40,19 +51,19 @@
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_divider"
-            app:menu="@menu/menu_bottom_navigation"/>
+            app:menu="@menu/menu_bottom_navigation" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <kg.autojuuguch.automoikakg.ui.views.MessageSnackBar
         android:id="@+id/view_snack_bar"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginHorizontal="@dimen/margin_horizontal_default"
         android:layout_marginBottom="20dp"
         android:background="@drawable/background_corners_snack_bar"
-        android:minHeight="45dp" />
+        android:minHeight="45dp"
+        android:visibility="gone" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -6,19 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/main_background">
 
-    <kg.autojuuguch.automoikakg.ui.views.ToolbarLayoutView
-        android:id="@+id/layout_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintTop_toTopOf="parent"
-        app:toolbarText="@string/auth_text" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/top_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <ImageView
         android:id="@+id/iv_logo"
@@ -53,7 +47,7 @@
         android:letterSpacing="-0.02"
         android:text="@string/auth_info_text"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@id/btn_login"
         app:layout_constraintTop_toBottomOf="@+id/tv_login_info_title"
         app:layout_constraintVertical_chainStyle="spread_inside" />

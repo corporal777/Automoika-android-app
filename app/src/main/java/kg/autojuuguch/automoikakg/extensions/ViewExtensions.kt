@@ -130,6 +130,12 @@ fun NestedScrollView.onScrolled(onScrolled: (scrollY: Int, oldScrollY: Int, scro
     return listener
 }
 
+fun NestedScrollView.onScroll(onScrolled: () -> Unit): NestedScrollView.OnScrollChangeListener {
+    val listener = NestedScrollView.OnScrollChangeListener { v, _, _, _, _ -> onScrolled() }
+    setOnScrollChangeListener(listener)
+    return listener
+}
+
 fun RecyclerView.onScrolled(
     onScrolled: (dx: Int, dy: Int) -> Unit,
 ): RecyclerView.OnScrollListener {
@@ -148,6 +154,14 @@ fun RecyclerView.onScroll(
     }
     addOnScrollListener(listener)
     return listener
+}
+
+fun NestedScrollView.computeVerticalOffset(): Int {
+    return computeVerticalScrollOffset()
+}
+
+fun RecyclerView.computeVerticalOffset(): Int {
+    return computeVerticalScrollOffset()
 }
 
 
@@ -249,6 +263,7 @@ var MaterialCardView.cardShadow: Float
             cardElevation = if (elevation <= 8f) elevation else 8f
         }
     }
+
 
 fun ViewGroup.setBackgroundSearch(it: Boolean) {
     setBackgroundResource(if (it) R.drawable.background_search_focused else R.drawable.background_search_normal)

@@ -7,7 +7,6 @@ import kg.autojuuguch.automoikakg.data.model.CarWashModel
 import kg.autojuuguch.automoikakg.data.PaginationResponse
 import kg.autojuuguch.automoikakg.data.CarWashData
 import kg.autojuuguch.automoikakg.data.model.CarWashDetailModel
-import kg.autojuuguch.automoikakg.data.model.CarWashOwnerModel
 import kg.autojuuguch.automoikakg.data.model.CarWashReviewModel
 import kg.autojuuguch.automoikakg.di.data.AppData
 import okhttp3.RequestBody
@@ -25,11 +24,5 @@ class CarWashRepositoryImpl(private val api: ApiService, private val appData: Ap
 
     override fun getCarWashReviews(id: String): Maybe<List<CarWashReviewModel>> {
         return api.getCarWashReviews(id).map { it.data }
-    }
-
-    override fun registerCarWash(body: RequestBody): Completable {
-        return api.registerCarWash(body)
-            .doOnSuccess { appData.setCarWash(it) }
-            .ignoreElement()
     }
 }
