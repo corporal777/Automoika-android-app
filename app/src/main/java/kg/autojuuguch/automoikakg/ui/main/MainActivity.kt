@@ -23,6 +23,7 @@ import kg.autojuuguch.automoikakg.ui.base.BaseActivity
 import kg.autojuuguch.automoikakg.ui.base.BaseToolbarFragment
 import kg.autojuuguch.automoikakg.ui.home.HomeFragment
 import kg.autojuuguch.automoikakg.ui.map.MapFragment
+import kg.autojuuguch.automoikakg.ui.profile.ProfileFragment
 import kg.autojuuguch.automoikakg.utils.SYSTEM_UI_LIGHT_NAV_BAR
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -98,7 +99,8 @@ class MainActivity : BaseActivity() {
                 R.id.map -> doPopBackStack.invoke(R.id.map_fragment)
                 R.id.favorites -> { true}
                 R.id.profile -> {
-                    if (!viewModel.isUserAuthorized()) showLoginFragment()
+                    if (viewModel.isUserAuthorized()) doPopBackStack.invoke(R.id.profile_fragment)
+                    else doPopBackStack.invoke(R.id.authorization_fragment)
                     true
                 }
                 else -> false
@@ -117,7 +119,10 @@ class MainActivity : BaseActivity() {
                 showNavigationBar()
                 menuItem.invoke(R.id.map).isChecked = true
             }
-            //is ProfileFragment -> menuItem.invoke(R.id.profile).isChecked = true
+            is ProfileFragment -> {
+                showNavigationBar()
+                menuItem.invoke(R.id.profile).isChecked = true
+            }
             //is ChatListTabsFragment -> menuItem.invoke(R.id.chats).isChecked = true
 
             else -> hideNavigationBar()
@@ -139,6 +144,9 @@ class MainActivity : BaseActivity() {
         findNavController().navigate(R.id.authorization_fragment)
     }
 
+    private fun showProfileFragment(){
+        findNavController().navigate(R.id.profile_fragment)
+    }
 
     private fun showNavigationBar() {
         window.navigationBarColor = getColor(R.color.bottom_navigation_bar_color)

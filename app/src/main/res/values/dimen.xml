@@ -50,4 +50,6 @@
     <dimen name="code_view_width">45dp</dimen>
     <dimen name="code_view_height">45dp</dimen>
     <dimen name="code_view_text_size">20sp</dimen>
+
+    <dimen name="profile_page_button_text_size">17sp</dimen>
 </resources>

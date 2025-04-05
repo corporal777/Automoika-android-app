@@ -3,10 +3,14 @@ package kg.autojuuguch.automoikakg.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.rxkotlin.plusAssign
 import kg.autojuuguch.automoikakg.api.socket.SocketIOManager
+import kg.autojuuguch.automoikakg.data.Optional
 import kg.autojuuguch.automoikakg.di.data.AppData
+import kg.autojuuguch.automoikakg.di.repository.UserRepository
+import kg.autojuuguch.automoikakg.extensions.call
 import kg.autojuuguch.automoikakg.ui.base.BaseViewModel
 import kg.autojuuguch.automoikakg.extensions.performOnBackgroundOutOnMain
 import kg.autojuuguch.automoikakg.extensions.withDelay
@@ -17,7 +21,8 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(
     private val appData: AppData,
-    private val socket: SocketIOManager
+    private val socket: SocketIOManager,
+    private val userRepository: UserRepository
 ) : BaseViewModel(appData) {
 
     private val _isLoading = MutableStateFlow(true)
@@ -27,9 +32,14 @@ class MainViewModel(
     val userCity: LiveData<String> get() = _userCity
 
     init {
-        checkUserCity()
+        checkToken()
     }
 
+
+    private fun checkToken() {
+        checkUserCity()
+        getUserData()
+    }
 
     private fun checkUserCity() {
         compositeDisposable += Maybe.just(appData.getUserCity())
@@ -39,6 +49,16 @@ class MainViewModel(
                 _userCity.value = it
                 _isLoading.value = false
             }
+    }
+
+    private fun getUserData() {
+        compositeDisposable += Completable.defer {
+            if (appData.getUserId().isNullOrEmpty()) Completable.complete()
+            else userRepository.getUser(appData.getUserId())
+                .doOnSuccess { appData.setUser(it) }.ignoreElement()
+        }
+            .performOnBackgroundOutOnMain()
+            .subscribeSimple {}
     }
 
     fun connectSocket() {

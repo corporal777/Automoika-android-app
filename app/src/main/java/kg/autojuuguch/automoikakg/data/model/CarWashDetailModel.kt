@@ -10,6 +10,7 @@ data class CarWashDetailModel(
     val id: String,
     val name: String,
     val description: String,
+    val createdAt : String,
     val backgroundImage: CarWashDetailImageModel,
     val images : List<CarWashDetailImageModel>,
     val address: CarWashDetailAddressModel,

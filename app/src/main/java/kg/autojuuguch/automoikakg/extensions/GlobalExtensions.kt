@@ -11,6 +11,7 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.location.LocationManager
 import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -49,6 +50,9 @@ import kotlin.random.Random
 
 
 fun Context.isConnectedToNetwork(): Boolean {
+    val callback = object : ConnectivityManager.NetworkCallback() {
+
+    }
     val connectivityManager =
         this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
     return connectivityManager?.activeNetworkInfo?.isConnected ?: false

@@ -86,6 +86,7 @@
                 android:id="@+id/btnClear"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
+                android:layout_marginEnd="5dp"
                 android:layout_gravity="end|center"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_input_clear"

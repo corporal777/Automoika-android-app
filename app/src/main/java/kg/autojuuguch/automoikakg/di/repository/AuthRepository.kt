@@ -11,6 +11,7 @@ interface AuthRepository {
 
     fun getFcmToken() : Maybe<String>
     fun login(phone : LoginBody) : Completable
+    fun logout(id : String?) : Completable
 
     fun checkPhoneExist(phone : String) : Maybe<Boolean>
     fun sendConfirmationCode(phone : String) : Completable

@@ -33,7 +33,6 @@ abstract class BaseViewModel(private val appData: AppData) : ViewModel() {
 
 
     fun isUserAuthorized() = appData.isUserAuthorized()
-    fun getUserId() = appData.getUserId()
 
     override fun onCleared() {
         super.onCleared()

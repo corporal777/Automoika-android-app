@@ -31,6 +31,9 @@ interface ApiService {
     @POST("v1/login-user")
     fun login(@Body map: LoginBody): Maybe<UserModel>
 
+    @POST("v1/logout-user/{id}")
+    fun logout(@Path("id") id: String): Completable
+
     @POST("v1/check-phone-exists")
     fun checkPhoneExists(@Body map: Map<String, String>): Maybe<String>
 

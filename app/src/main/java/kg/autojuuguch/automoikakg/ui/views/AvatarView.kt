@@ -27,6 +27,7 @@ class AvatarView : MaterialCardView {
 
     private var textViewSize = 0f
     private var imageBitmap: Bitmap? = null
+    private var imageUri: String? = null
 
     private val imageView = ImageView(context).apply {
         setColorFilter(getColor(R.color.blue_dark_avatar_gradient))
@@ -35,7 +36,7 @@ class AvatarView : MaterialCardView {
     }
 
     private val textView = TextView(context).apply {
-        isVisible = imageBitmap == null
+        isVisible = imageBitmap != null || imageUri != null
         setTypeface(ResourcesCompat.getFont(context, R.font.sf_pro_text_semibold))
         letterSpacing = -0.01f
         text = "Нет фото"
@@ -67,6 +68,16 @@ class AvatarView : MaterialCardView {
             if (imageBitmap == null) setColorFilter(getColor(R.color.blue_dark_avatar_gradient))
             else setColorFilter(getColor(R.color.trans))
             setImage(imageBitmap, 200, error = R.drawable.avatar_placeholder_rectangle)
+        }
+    }
+
+    fun setImageUri(uri: String?) {
+        imageUri = uri
+        textView.isVisible = uri.isNullOrEmpty()
+        imageView.apply {
+            if (uri.isNullOrEmpty()) setColorFilter(getColor(R.color.blue_dark_avatar_gradient))
+            else setColorFilter(getColor(R.color.trans))
+            setImage(uri, 200, error = R.drawable.avatar_placeholder_rectangle)
         }
     }
 }

@@ -43,7 +43,7 @@ class FlowableLocation(private val fragment: Fragment) {
         fragment.registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { activityResult ->
             if (activityResult.resultCode == Activity.RESULT_OK) {
                 updateLocationRequest()
-            }
+            } else locationSubject.onError(PermissionNotGrantedException())
         }
 
     private val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 1000)
@@ -58,7 +58,7 @@ class FlowableLocation(private val fragment: Fragment) {
     fun getLocation(): Observable<Location> {
         return RxPermissions(fragment).request(
             Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.ACCESS_FINE_LOCATION
+            //Manifest.permission.ACCESS_FINE_LOCATION
         ).flatMap {
             if (it) {
                 if (isGPSEnabled(fragment)) updateLocationRequest() else enableGPS(fragment)
@@ -85,10 +85,7 @@ class FlowableLocation(private val fragment: Fragment) {
         locationProvider.lastLocation
             .addOnSuccessListener { location: Location? ->
                 if (location == null) startLocationUpdates()
-                else {
-                    Log.e("REQUEST INFO LOCATION", location.toString())
-                    locationSubject.onNext(location)
-                }
+                else locationSubject.onNext(location)
             }
     }
 

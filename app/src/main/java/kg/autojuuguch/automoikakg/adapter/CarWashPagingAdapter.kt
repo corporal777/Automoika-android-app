@@ -83,9 +83,10 @@ class CarWashPagingAdapter(val onClick: (id: String) -> Unit) :
                         append(getColorizedText(model.name, R.color.yellow))
                     }
                 }
-                tvCarWashAddress.text =
-                    root.context.getString(R.string.car_wash_address_text, model.address.street)
-
+                tvCarWashAddress.apply {
+                    val address = context.getString(R.string.address_text, model.address.getAddressStreet())
+                    text = address
+                }
                 ivLogo.setImage(model.getBackgroundImage())
 
                 createBoxes(model.boxes.free, model.boxes.count.toInt())

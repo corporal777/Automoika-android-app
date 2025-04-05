@@ -44,7 +44,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_city_info"
         app:layout_constraintVertical_bias="0.19"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:visibility="gone">
 
 
         <TextView
@@ -85,28 +86,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_city_info"
         app:layout_constraintVertical_bias="0.19"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:visibility="visible">
 
         <androidx.appcompat.widget.AppCompatTextView
-            style="@style/TextStyle.Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/name_city"
-            android:textColor="@color/color_of_textview_border"
-            android:textSize="14sp" />
+            style="@style/TextStyle.Title"
+            android:layout_marginTop="0dp"
+            android:text="@string/name_city" />
 
-        <FrameLayout
-            android:id="@+id/fl_city"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/background_input_normal">
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_city"
-                style="@style/SimpleEditTextStyle"
-                android:hint="@string/enter_name_city" />
-        </FrameLayout>
+        <EditText
+            android:id="@+id/et_city"
+            style="@style/EditTextStyle"
+            android:layout_marginTop="3dp"
+            android:hint="@string/enter_name_city" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_save"

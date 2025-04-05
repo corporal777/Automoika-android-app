@@ -15,6 +15,7 @@ import kg.autojuuguch.automoikakg.extensions.onAfterTextChanged
 import kg.autojuuguch.automoikakg.extensions.onBackPressedCallback
 import kg.autojuuguch.automoikakg.extensions.onFocusChanged
 import kg.autojuuguch.automoikakg.extensions.setBackgroundInput
+import kg.autojuuguch.automoikakg.extensions.setClickListener
 import kg.autojuuguch.automoikakg.ui.base.BaseVBFragment
 import kg.autojuuguch.automoikakg.utils.LOG_TAG
 import kg.autojuuguch.automoikakg.utils.location.FlowableLocation
@@ -38,22 +39,15 @@ class CityFragment : BaseVBFragment<FragmentCityBinding>() {
         super.onViewCreated(view, savedInstanceState)
         onBackPressedCallback { showHomeFragment() }
         mBinding.apply {
-            etCity.apply {
-                onFocusChanged { flCity.setBackgroundInput(it) }
-                onAfterTextChanged {
-                    viewModel.onChangeCity(it.toString())
-                    btnSave.isEnabled = it.toString().isNotEmpty()
-                }
+            etCity.onAfterTextChanged {
+                viewModel.onChangeCity(it.toString())
+                btnSave.isEnabled = it.toString().isNotEmpty()
             }
-
             btnChange.setOnClickListener { viewModel.onShowEnterCity() }
-            btnAccept.setOnClickListener {
-                viewModel.onSaveUserCity()
-            }
+            btnAccept.setOnClickListener { viewModel.onSaveUserCity() }
             btnSave.apply {
                 isEnabled = etCity.text.toString().isNotEmpty()
-                setOnClickListener { viewModel.onSaveUserCity() }
-
+                setClickListener { viewModel.onSaveUserCity() }
             }
         }
         observeUserLocation()

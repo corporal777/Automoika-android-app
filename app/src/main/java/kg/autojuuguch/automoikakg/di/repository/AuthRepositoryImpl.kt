@@ -28,6 +28,10 @@ class AuthRepositoryImpl(private val api: ApiService, private val appData: AppDa
         return api.login(phone).doOnSuccess { appData.setUser(it) }.ignoreElement()
     }
 
+    override fun logout(id: String?): Completable {
+        return api.logout(id!!).doOnComplete { appData.setUser(null) }
+    }
+
 
     override fun checkPhoneExist(phone: String): Maybe<Boolean> {
         return api.checkPhoneExists(mapOf("phone" to phone)).map { it != "-1" }

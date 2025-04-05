@@ -8,46 +8,40 @@ class AppPrefsImpl (val context: Context) : AppPrefs {
 
     override var userId: String?
         get() = prefs.getString(USER_ID, null)
-        @SuppressLint("ApplySharedPref")
         set(value) {
-            prefs.edit().putString(USER_ID, value).commit()
+            prefs.edit().putString(USER_ID, value).apply()
         }
 
 
     override var token: String?
         get() = prefs.getString(TOKEN, null)
-        @SuppressLint("ApplySharedPref")
         set(value) {
-            prefs.edit().putString(TOKEN, value).commit()
+            prefs.edit().putString(TOKEN, value).apply()
         }
 
 
-    override var userCity: String
-        get() = prefs.getString(USER_CITY, null) ?: ""
-        @SuppressLint("ApplySharedPref")
+    override var userCity: String?
+        get() = prefs.getString(USER_CITY, null)
         set(value) {
-            prefs.edit().putString(USER_CITY, value).commit()
+            prefs.edit().putString(USER_CITY, value).apply()
         }
 
     override var deviceId: String?
         get() = prefs.getString(DEVICE_ID, null)
-        @SuppressLint("ApplySharedPref")
         set(value) {
-            prefs.edit().putString(DEVICE_ID, value).commit()
+            prefs.edit().putString(DEVICE_ID, value).apply()
         }
 
     override var search: String?
         get() = prefs.getString(SEARCH, null)
-        @SuppressLint("ApplySharedPref")
         set(value) {
-            prefs.edit().putString(SEARCH, value).commit()
+            prefs.edit().putString(SEARCH, value).apply()
         }
 
     override var accountType: String?
         get() = prefs.getString(ACCOUNT_TYPE, null)
-        @SuppressLint("ApplySharedPref")
         set(value) {
-            prefs.edit().putString(ACCOUNT_TYPE, value).commit()
+            prefs.edit().putString(ACCOUNT_TYPE, value).apply()
         }
 
 

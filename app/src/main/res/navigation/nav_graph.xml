@@ -113,4 +113,11 @@
             app:nullable="false" />
     </activity>
 
+
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="kg.autojuuguch.automoikakg.ui.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
+
 </navigation>

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AutoMoikaKg</string>
 
-    <string name="car_wash_address_text">Адрес : %s</string>
+    <string name="address_text">Адрес: %s</string>
     <string name="search_text_by_name_address">Поиск по названию, адресу</string>
     <string name="search_text">Поиск</string>
     <string name="location_text">Местоположение</string>
@@ -19,6 +19,7 @@
     <string name="city_info_title">Автомойки будут отображаться по выбранному городу. Изменить выбранный город можно в профиле.</string>
     <string name="is_your_city_is">Ваш город %s?</string>
     <string name="change_city">Изменить город</string>
+    <string name="change_city_alternative">Сменить город</string>
     <string name="name_city">Название города</string>
     <string name="enter_name_city">Введите название города</string>
     <string name="city_not_found_error_text">Не удалось определить город</string>
@@ -152,6 +153,14 @@
     <string name="login_password_text">Логин и пароль</string>
     <string name="register_login_info_text">Введите ваше имя, номер телефона и придумайте пароль.</string>
     <string name="are_you_sure_exit_text">Вы уверены, что хотите выйти? Все заполненные данные будут утеряны.</string>
+    <string name="logout_text">Вы уверены, что хотите выйти из аккаунта?</string>
 
     <string name="not_filled">Не указано</string>
+    <string name="profile_settings">Настройки профиля</string>
+    <string name="profile_logout">Выйти из аккаунта</string>
+    <string name="my_reviews">Мои отзывы</string>
+    <string name="like_app">Оценить приложение</string>
+    <string name="letter_developers">Написать разработчикам</string>
+    <string name="about_app">О приложении</string>
+    <string name="logout_success_text">Вы вышли из аккаунта</string>
 </resources>

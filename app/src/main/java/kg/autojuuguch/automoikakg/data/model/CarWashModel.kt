@@ -34,7 +34,15 @@ data class CarWashAddressModel(
     val district: String,
     val lat: String,
     val lon: String
-) : Parcelable
+) : Parcelable {
+    fun getAddressStreet(): String {
+        return if (street.contains("Улица", true)
+            || street.contains("Ул", true)
+            || street.contains("Проспект", true)
+            ) street
+        else "ул. $street"
+    }
+}
 
 
 @Parcelize

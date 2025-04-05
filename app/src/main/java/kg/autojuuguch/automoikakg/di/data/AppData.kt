@@ -22,7 +22,7 @@ class AppData(private val appPrefs: AppPrefs, private val context: Context) {
             appPrefs.userId = value
         }
 
-    private var userTown: String = appPrefs.userCity
+    private var userTown: String? = appPrefs.userCity
         set(value) {
             if (field == value) return
             field = value
@@ -47,19 +47,17 @@ class AppData(private val appPrefs: AppPrefs, private val context: Context) {
     //subjects
     private val codeSubject = PublishSubject.create<String>()
 
+
     private var userModel : UserModel? = null
 
-
-    fun setUser(user : UserModel)  {
-        userId = user.id
+    fun getUser() = userModel
+    fun setUser(user : UserModel?)  {
+        userId = user?.id
         userModel = user
     }
-    fun getUser() = userModel
 
-
-
-    fun getUserCity() = this.userTown
-    fun setUserCity(town: String) = this.let { it.userTown = town }
+    fun getUserCity() = userTown ?: ""
+    fun setUserCity(town: String) = run { userTown = town }
 
     fun setConfirmationCode(code : String) = codeSubject.onNext(code)
     fun getConfirmationCodeSubject(): PublishSubject<String> = codeSubject
@@ -70,8 +68,6 @@ class AppData(private val appPrefs: AppPrefs, private val context: Context) {
         val history = appPrefs.search
         appPrefs.search = if (history.isNullOrEmpty()) text else "$history,$text"
     }
-
-
 
     fun isUserAuthorized() = !userId.isNullOrEmpty()
     fun getUserId() = userId

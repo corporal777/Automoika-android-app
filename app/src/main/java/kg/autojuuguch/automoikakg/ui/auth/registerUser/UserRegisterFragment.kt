@@ -1,49 +1,24 @@
 package kg.autojuuguch.automoikakg.ui.auth.registerUser
 
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableString
 import android.text.method.LinkMovementMethod
-import android.util.Log
 import android.view.View
-import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.ScrollingView
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import com.tbruyelle.rxpermissions2.RxPermissions
 import kg.autojuuguch.automoikakg.R
-import kg.autojuuguch.automoikakg.data.body.LoginBody
 import kg.autojuuguch.automoikakg.databinding.FragmentUserRegisterBinding
-import kg.autojuuguch.automoikakg.databinding.FragmentUserRegisterShortBinding
 import kg.autojuuguch.automoikakg.extensions.changeTitleTextColor
 import kg.autojuuguch.automoikakg.extensions.getColor
 import kg.autojuuguch.automoikakg.extensions.getPrivacyPoliticsText
 import kg.autojuuguch.automoikakg.extensions.initChecked
-import kg.autojuuguch.automoikakg.extensions.initInput
 import kg.autojuuguch.automoikakg.extensions.onAfterTextChanged
-import kg.autojuuguch.automoikakg.extensions.onCheckedChanged
-import kg.autojuuguch.automoikakg.extensions.onTextChanged
-import kg.autojuuguch.automoikakg.extensions.setArgument
-import kg.autojuuguch.automoikakg.extensions.setBackgroundInput
 import kg.autojuuguch.automoikakg.extensions.setClickListener
-import kg.autojuuguch.automoikakg.extensions.setColorSpan
-import kg.autojuuguch.automoikakg.extensions.setImage
 import kg.autojuuguch.automoikakg.ui.base.BaseToolbarFragment
-import kg.autojuuguch.automoikakg.ui.base.BaseVBFragment
 import kg.autojuuguch.automoikakg.ui.dialogs.DefaultAlertDialog
-import kg.autojuuguch.automoikakg.ui.gallery.GalleryBottomSheet
-import kg.autojuuguch.automoikakg.ui.gallery.GalleryBottomSheet.Companion.GALLERY_TAG
-import kg.autojuuguch.automoikakg.ui.gallery.GalleryType
-import kg.autojuuguch.automoikakg.ui.views.ToolbarLayoutView
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
 
-class UserRegisterFragment : BaseToolbarFragment<FragmentUserRegisterShortBinding>() {
+class UserRegisterFragment : BaseToolbarFragment<FragmentUserRegisterBinding>() {
 
     override val viewModel by viewModel<UserRegisterViewModel>()
 
@@ -113,6 +88,6 @@ class UserRegisterFragment : BaseToolbarFragment<FragmentUserRegisterShortBindin
     override val title: CharSequence by lazy { getString(R.string.register_text) }
     override fun animationType(): AnimType = AnimType.FADE
     override fun scrollingView(): ScrollingView = mBinding.scrollView
-    override fun binding() = FragmentUserRegisterShortBinding::class.java
-    override fun layout(): Int = R.layout.fragment_user_register_short
+    override fun binding() = FragmentUserRegisterBinding::class.java
+    override fun layout(): Int = R.layout.fragment_user_register
 }

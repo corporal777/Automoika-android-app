@@ -40,37 +40,20 @@ class PasswordView : FrameLayout {
 
     init {
         binding.apply {
-            toggleOne.apply {
-                isVisible = !password.isNullOrEmpty()
-                setOnCheckedChangeListener { _, c ->
-                    if (!c) etPasswordOne.transformationMethod = PasswordTransformationMethod()
-                    else etPasswordOne.transformationMethod = null
-                    etPasswordOne.setSelection(etPasswordOne.length())
-                }
-            }
-        }
-        initPasswordField()
-        validatePassword(password)
-    }
-
-
-    private fun initPasswordField() {
-        binding.apply {
             etPasswordOne.apply {
                 onFocusChanged { hasFocus ->
-                    tilPasswordOne.setBackgroundInput(hasFocus)
                     if (hasFocus) validatePassword(password)
                 }
                 onAfterTextChanged {
                     password = it.toString()
                     validatePassword(password)
-                    toggleOne.isVisible = !password.isNullOrEmpty()
                 }
 
             }
         }
-
+        validatePassword(password)
     }
+
 
     private fun validatePassword(password: CharSequence?) {
         val isLengthValid = (password?.length ?: 0) >= MIN_LENGTH

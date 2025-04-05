@@ -21,7 +21,7 @@
 
     <style name="SplashTheme.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/main_background</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo_new</item>
         <item name="windowSplashScreenAnimationDuration">1000</item>
         <item name="postSplashScreenTheme">@style/AppTheme.AutoMoikaKg</item>
     </style>
@@ -123,6 +123,23 @@
         <item name="android:colorControlActivated">@color/app_main_color</item>
     </style>
 
+    <style name="EditTextStyle">
+        <item name="android:fontFamily">@font/sf_pro_text</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/edit_text_min_height</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:minHeight">@dimen/edit_text_min_height</item>
+        <item name="android:textSize">@dimen/edit_text_size</item>
+        <item name="android:textColorHint">@color/input_hint_text_color</item>
+        <item name="android:background">@drawable/background_input</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:inputType">textCapSentences</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:theme">@style/EditTextSelectorTheme</item>
+        <item name="android:colorControlActivated">@color/app_main_color</item>
+    </style>
+
     <style name="AutoCompleteTextStyle" parent="TextInputEditTextStyle">
         <item name="android:focusable">false</item>
         <item name="android:focusableInTouchMode">false</item>
@@ -136,11 +153,6 @@
         <item name="android:fontFamily">@font/sf_pro_text</item>
         <item name="android:drawableStart">@drawable/ic_search</item>
         <item name="android:drawablePadding">5dp</item>
-        <item name="android:background">@null</item>
-    </style>
-
-    <style name="SimpleEditTextStyle" parent="TextInputEditTextStyle">
-        <item name="android:fontFamily">@font/sf_pro_text</item>
         <item name="android:background">@null</item>
     </style>
 
@@ -232,6 +244,15 @@
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/input_title_text_color</item>
+    </style>
+
+    <style name="TextStyle.ButtonPages" parent="TextStyle.Semibold">
+        <item name="paddingStart">15dp</item>
+        <item name="android:textSize">@dimen/profile_page_button_text_size</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:drawablePadding">15dp</item>
     </style>
 
 

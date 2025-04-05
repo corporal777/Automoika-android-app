@@ -6,7 +6,7 @@
 
 
     <!--    <color name="main_background">#FBFBFB</color>-->
-    <color name="main_background">#FFFFFF</color>
+    <color name="main_background">#FFFFFFFF</color>
 
     <color name="app_main_color">#022B54</color>
 
@@ -21,7 +21,7 @@
     <color name="bottom_navigation_bar_color">#144C7BAF</color>
     <color name="input_focused_background">#404C7BAF</color>
     <color name="input_disabled_background">#80D6D6E5</color>
-    <color name="input_unfocused_background">#2B4C7BAF</color>
+    <color name="input_unfocused_background">#2E4C7BAF</color>
 
 
     <color name="error_toast_color">#A00000</color>
