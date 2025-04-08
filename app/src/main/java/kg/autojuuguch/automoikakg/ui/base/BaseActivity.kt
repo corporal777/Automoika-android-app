@@ -8,6 +8,7 @@ import android.os.VibrationEffect.EFFECT_CLICK
 import android.os.Vibrator
 import android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN
 import android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -17,11 +18,13 @@ import androidx.navigation.fragment.NavHostFragment
 import kg.autojuuguch.automoikakg.R
 import kg.autojuuguch.automoikakg.databinding.ActivityMainBinding
 import kg.autojuuguch.automoikakg.extensions.cancelWindowTransparency
+import kg.autojuuguch.automoikakg.extensions.doEdgeWindow
 import kg.autojuuguch.automoikakg.extensions.setWindowTransparency
 import kg.autojuuguch.automoikakg.extensions.statusBarColorValue
 import kg.autojuuguch.automoikakg.extensions.withDelayed
 import kg.autojuuguch.automoikakg.ui.detail.CarWashDetailFragment
 import kg.autojuuguch.automoikakg.ui.home.HomeFragment
+import kg.autojuuguch.automoikakg.ui.stories.StoriesFragment
 import kg.autojuuguch.automoikakg.utils.SYSTEM_UI_LIGHT_STATUS_BAR
 
 abstract class BaseActivity : FragmentActivity() {
@@ -29,6 +32,7 @@ abstract class BaseActivity : FragmentActivity() {
     lateinit var binding: ActivityMainBinding
 
     abstract val navFragmentsLifecycleCallback : FragmentManager.FragmentLifecycleCallbacks
+    abstract val backClick : OnBackPressedCallback
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +41,7 @@ abstract class BaseActivity : FragmentActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         registerFragmentLifecycleCallback()
+        onBackPressedDispatcher.addCallback(this, backClick)
     }
 
 
@@ -61,6 +66,7 @@ abstract class BaseActivity : FragmentActivity() {
         else window.setSoftInputMode(SOFT_INPUT_ADJUST_RESIZE)
 
         if (f is CarWashDetailFragment) setWindowTransparency { f.setupToolbarTopMargin(it) }
+        else if (f is StoriesFragment) doEdgeWindow()
         else cancelWindowTransparency()
     }
 

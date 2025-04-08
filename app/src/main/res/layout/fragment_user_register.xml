@@ -46,7 +46,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_login_info" />
 
 
-        <EditText
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_name"
             style="@style/EditTextStyle"
             android:layout_width="match_parent"

@@ -1,11 +1,12 @@
 package kg.autojuuguch.automoikakg.adapter
 
 import android.text.SpannableStringBuilder
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.children
+import androidx.lifecycle.Lifecycle
+import androidx.paging.PagingData
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -14,15 +15,16 @@ import dev.androidbroadcast.vbpd.viewBinding
 import kg.autojuuguch.automoikakg.R
 import kg.autojuuguch.automoikakg.data.model.CarWashBoxModel
 import kg.autojuuguch.automoikakg.data.model.CarWashModel
+import kg.autojuuguch.automoikakg.data.model.StoriesModel
 import kg.autojuuguch.automoikakg.databinding.ItemListCarWashBinding
 import kg.autojuuguch.automoikakg.extensions.executePlaceholderLoadState
 import kg.autojuuguch.automoikakg.extensions.getColorizedText
 import kg.autojuuguch.automoikakg.extensions.setImage
 import kg.autojuuguch.automoikakg.ui.views.BoxView
-import kg.autojuuguch.automoikakg.utils.LOG_TAG
 
 class CarWashPagingAdapter(val onClick: (id: String) -> Unit) :
     PagingDataAdapter<CarWashModel, CarWashPagingAdapter.CarWashPagingVH>(AsyncDiffCallback) {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarWashPagingVH {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -36,13 +38,9 @@ class CarWashPagingAdapter(val onClick: (id: String) -> Unit) :
         }
     }
 
-    override fun onBindViewHolder(
-        holder: CarWashPagingVH,
-        position: Int,
-        payloads: MutableList<Any>
-    ) {
+    override fun onBindViewHolder(holder: CarWashPagingVH, pos: Int, payloads: MutableList<Any>) {
         val data = payloads.firstOrNull()
-        if (data == null) super.onBindViewHolder(holder, position, payloads)
+        if (data == null) super.onBindViewHolder(holder, pos, payloads)
         else if (data is CarWashModel) holder.updateBoxes(data.boxes.free, data.boxes.count.toInt())
     }
 
@@ -84,7 +82,8 @@ class CarWashPagingAdapter(val onClick: (id: String) -> Unit) :
                     }
                 }
                 tvCarWashAddress.apply {
-                    val address = context.getString(R.string.address_text, model.address.getAddressStreet())
+                    val address =
+                        context.getString(R.string.address_text, model.address.getAddressStreet())
                     text = address
                 }
                 ivLogo.setImage(model.getBackgroundImage())
@@ -128,11 +127,12 @@ class CarWashPagingAdapter(val onClick: (id: String) -> Unit) :
 
     companion object {
         fun CarWashPagingAdapter.withLoadStateAdapters(
+            storiesAdapter: RecyclerView.Adapter<*>?,
             header: CustomLoadStateAdapter<*>,
             footer: CustomLoadStateAdapter<*>,
             onEmpty: (show: Boolean) -> Unit
         ): ConcatAdapter {
-            addOnPagesUpdatedListener {}
+            addOnPagesUpdatedListener { }
             addLoadStateListener { loadState ->
 
                 header.loadState = if (itemCount > 0) header.notRefresh else loadState.refresh
@@ -140,7 +140,8 @@ class CarWashPagingAdapter(val onClick: (id: String) -> Unit) :
 
                 executePlaceholderLoadState(loadState) { onEmpty.invoke(it) }
             }
-            return ConcatAdapter(header, this, footer)
+            return if (storiesAdapter != null) ConcatAdapter(storiesAdapter, header, this, footer)
+            else ConcatAdapter(header, this, footer)
         }
     }
 

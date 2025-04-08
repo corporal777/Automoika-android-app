@@ -7,7 +7,11 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
 import java.util.concurrent.atomic.AtomicBoolean
 
-class SingleLiveEvent<T> : MediatorLiveData<T>() {
+class SingleLiveEvent<T> : MediatorLiveData<T> {
+
+    constructor() : super()
+    constructor(value : T) : super(value)
+
 
     private val isDataChanged = AtomicBoolean(false)
 

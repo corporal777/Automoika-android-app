@@ -42,6 +42,13 @@ import kg.autojuuguch.automoikakg.R
 import kg.autojuuguch.automoikakg.adapter.NoFilterArrayAdapter
 import kotlin.math.abs
 
+fun TextView.setLeftDrawable(res: Int) {
+    this.setCompoundDrawablesWithIntrinsicBounds(res, 0, 0, 0)
+}
+
+fun TextView.setRightDrawable(res: Int) {
+    this.setCompoundDrawablesWithIntrinsicBounds(0, 0, res, 0)
+}
 
 fun AppCompatToggleButton.onCheckedChanged(onCheckedChanged: (checked: Boolean) -> Unit): CompoundButton.OnCheckedChangeListener {
     val listener = CompoundButton.OnCheckedChangeListener { p0, p1 -> onCheckedChanged(p1) }

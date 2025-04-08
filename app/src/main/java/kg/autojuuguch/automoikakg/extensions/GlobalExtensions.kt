@@ -22,6 +22,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.app.SharedElementCallback
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.graphics.drawable.toBitmap
@@ -123,6 +124,8 @@ fun Activity.cancelWindowTransparency(listener: OnSystemInsetsChangedListener = 
 
 fun Activity.doEdgeWindow(listener: OnSystemInsetsChangedListener = { _, _ -> }) {
     InsetUtil.doEdgeDisplay(window.decorView, listener)
+    window.navigationBarColor = Color.TRANSPARENT
+    window.statusBarColor = Color.TRANSPARENT
 }
 
 typealias OnSystemInsetsChangedListener = (statusBarSize: Int, navigationBarSize: Int) -> Unit
@@ -168,7 +171,7 @@ fun Fragment.getBitmapFromDrawable(res: Int): Bitmap? {
     return AppCompatResources.getDrawable(requireContext(), res)?.toBitmap(24.dp, 24.dp)
 }
 
-fun Fragment.getBitmapDrawable(res: Int, size : Int): Bitmap? {
+fun Fragment.getBitmapDrawable(res: Int, size: Int): Bitmap? {
     return AppCompatResources.getDrawable(requireContext(), res)?.toBitmap(size, size)
 }
 
@@ -185,11 +188,11 @@ fun Context.hasLocationPermission(): Boolean {
     ) == PackageManager.PERMISSION_GRANTED
 }
 
-fun withDelayed(millis : Long, block : () -> Unit ){
+fun withDelayed(millis: Long, block: () -> Unit) {
     Handler().postDelayed({ block.invoke() }, millis)
 }
 
-fun BaseVBFragment<*>.startIntent(type : String, intent : Intent.() -> Unit){
+fun BaseVBFragment<*>.startIntent(type: String, intent: Intent.() -> Unit) {
     try {
         val newIntent = Intent(type).apply(intent)
         requireContext().startActivity(newIntent)
@@ -198,7 +201,7 @@ fun BaseVBFragment<*>.startIntent(type : String, intent : Intent.() -> Unit){
     }
 }
 
-fun Context.startIntent(type : String, intent : Intent.() -> Unit){
+fun Context.startIntent(type: String, intent: Intent.() -> Unit) {
     try {
         val newIntent = Intent(type).apply(intent)
         startActivity(newIntent)
@@ -207,19 +210,19 @@ fun Context.startIntent(type : String, intent : Intent.() -> Unit){
     }
 }
 
-fun showKeyboard(context : Context, view: View){
+fun showKeyboard(context: Context, view: View) {
     WindowCompat.getInsetsController((context as Activity).window, view)
         .show(WindowInsetsCompat.Type.ime())
 }
 
-fun hideKeyboard(context: Context, v: View?){
+fun hideKeyboard(context: Context, v: View?) {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     v?.let {
         imm.hideSoftInputFromWindow(it.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     }
 }
 
-fun Fragment.setResultListener(key : String, block: (value : Bundle) -> Unit){
+fun Fragment.setResultListener(key: String, block: (value: Bundle) -> Unit) {
     setFragmentResultListener(key) { _, bundle ->
         block.invoke(bundle)
         clearFragmentResultListener(key)
@@ -228,7 +231,7 @@ fun Fragment.setResultListener(key : String, block: (value : Bundle) -> Unit){
 
 inline fun <reified T : Parcelable> Fragment.setResultListener(
     key: String,
-    code : String,
+    code: String,
     crossinline block: (value: T) -> Unit
 ) {
     setFragmentResultListener(key) { _, bundle ->
@@ -238,7 +241,7 @@ inline fun <reified T : Parcelable> Fragment.setResultListener(
     }
 }
 
-fun NavController.navigatePopUp(id : Int){
+fun NavController.navigatePopUp(id: Int) {
     val options = navOptions { popUpTo(R.id.main_navigation) { inclusive = true } }
     navigate(id, null, options)
 }
@@ -249,6 +252,22 @@ fun Fragment.getMakeSceneTransition(view: View): ActivityOptionsCompat {
         requireActivity(),
         Pair(view, view.transitionName)
     )
+}
+
+fun Fragment.setExitSharedElement(view: View) {
+    setExitSharedElementCallback(object : SharedElementCallback() {
+        override fun onMapSharedElements(names: MutableList<String>, elements: MutableMap<String, View>?) {
+            elements?.put(names[0], view)
+        }
+    })
+}
+
+fun Fragment.setEnterSharedElement(view: View) {
+    setEnterSharedElementCallback(object : SharedElementCallback() {
+        override fun onMapSharedElements(names: List<String?>, elements: MutableMap<String?, View?>) {
+            elements[names[0]] = view
+        }
+    })
 }
 
 fun saveImageToCache(context: Context, image: Bitmap): Uri? {
@@ -279,7 +298,7 @@ fun Uri.fileName(contentResolver: ContentResolver): String? {
         }
 }
 
-fun objectTapListener(block : (point : Point) -> Unit): GeoObjectTapListener {
+fun objectTapListener(block: (point: Point) -> Unit): GeoObjectTapListener {
     val listener = GeoObjectTapListener {
         val point = it.geoObject.geometry.first().point
         if (point != null) block.invoke(point)
@@ -288,7 +307,7 @@ fun objectTapListener(block : (point : Point) -> Unit): GeoObjectTapListener {
     return listener
 }
 
-fun mapObjectTapListener(block : (obj : MapObject) -> Unit): MapObjectTapListener {
+fun mapObjectTapListener(block: (obj: MapObject) -> Unit): MapObjectTapListener {
     val listener = MapObjectTapListener { mapObject, _ ->
         block.invoke(mapObject)
         return@MapObjectTapListener true

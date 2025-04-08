@@ -6,6 +6,7 @@ import androidx.core.view.ScrollingView
 import androidx.navigation.fragment.findNavController
 import kg.autojuuguch.automoikakg.R
 import kg.autojuuguch.automoikakg.databinding.FragmentProfileBinding
+import kg.autojuuguch.automoikakg.extensions.isVisibleFastAnim
 import kg.autojuuguch.automoikakg.extensions.showActionDialog
 import kg.autojuuguch.automoikakg.ui.base.BaseToolbarFragment
 import kg.autojuuguch.automoikakg.ui.base.BaseViewModel
@@ -24,16 +25,24 @@ class ProfileFragment : BaseToolbarFragment<FragmentProfileBinding>() {
             }
         }
         observeUser()
+        observeLoading()
     }
 
     private fun observeUser(){
         viewModel.user.observe {
             if (it != null) mBinding.apply {
-                mBinding.viewAvatar.setImageUri(it.image.loadImage())
+                mBinding.viewAvatar.setImage(it.image.loadImage())
                 mBinding.tvName.text = it.name
                 mBinding.tvCity.text = "г. ${viewModel.getCity()}"
             }
             else logoutSuccess()
+        }
+    }
+
+    private fun observeLoading(){
+        viewModel.buttonLoading.observe {
+            mBinding.clHeader.isVisibleFastAnim = !it
+            mBinding.shimmerView.isVisibleFastAnim = it
         }
     }
 

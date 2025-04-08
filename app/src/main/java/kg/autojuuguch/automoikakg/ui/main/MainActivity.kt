@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -35,6 +36,7 @@ class MainActivity : BaseActivity() {
         onFragmentStarted = { f -> setupBackgroundTransparency(f) },
         onFragmentViewCreated = { f ->
             setupNavBarItems(f)
+            setupNavigateUpButton(f)
             setupBackgroundImageFragment(f)
 
             binding.toolbar.apply {
@@ -45,7 +47,7 @@ class MainActivity : BaseActivity() {
         }
     )
 
-    private val backClick = onBackPressedCallback {
+    override val backClick = onBackPressedCallback {
         val fragment = getChildNavHostFragment() ?: return@onBackPressedCallback
         when (fragment) {
             is HomeFragment -> finish()
@@ -64,7 +66,6 @@ class MainActivity : BaseActivity() {
         setupMainNavBar()
         observeUserCity()
 
-        onBackPressedDispatcher.addCallback(this, backClick)
         viewModel.connectSocket()
 
         binding.toolbar.getBackButton().setOnClickListener { navigateUpVibration() }
@@ -101,7 +102,6 @@ class MainActivity : BaseActivity() {
                 R.id.profile -> {
                     if (viewModel.isUserAuthorized()) doPopBackStack.invoke(R.id.profile_fragment)
                     else doPopBackStack.invoke(R.id.authorization_fragment)
-                    true
                 }
                 else -> false
             }
@@ -129,7 +129,14 @@ class MainActivity : BaseActivity() {
         }
     }
 
-
+    private fun setupNavigateUpButton(f: Fragment) {
+        when (f) {
+            is ProfileFragment -> {
+                binding.toolbar.getBackButton().isInvisible = true
+            }
+            else -> binding.toolbar.getBackButton().isInvisible = false
+        }
+    }
 
 
     private fun showCityFragment(){

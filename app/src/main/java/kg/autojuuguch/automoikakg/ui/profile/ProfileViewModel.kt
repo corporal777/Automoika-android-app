@@ -19,13 +19,14 @@ class ProfileViewModel(
     private val authRepository: AuthRepository
 ) : BaseViewModel(appData) {
 
-    private val _user = MutableLiveData<UserModel?>()
+    private val _user = SingleLiveEvent<UserModel?>()
     val user: LiveData<UserModel?> get() = _user
 
     init {
         compositeDisposable += userRepository.getUser(appData.getUserId())
             .doOnSuccess { appData.setUser(it) }
             .performOnBackgroundOutOnMain()
+            .withButtonLoading()
             .subscribeSimple(
                 onError = { onReceiveError(it) },
                 onSuccess = { _user.setValue(it) }

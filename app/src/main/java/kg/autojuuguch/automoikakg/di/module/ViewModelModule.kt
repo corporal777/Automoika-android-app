@@ -14,12 +14,13 @@ import kg.autojuuguch.automoikakg.ui.map.MapViewModel
 import kg.autojuuguch.automoikakg.ui.map.address.MapAddressViewModel
 import kg.autojuuguch.automoikakg.ui.profile.ProfileViewModel
 import kg.autojuuguch.automoikakg.ui.splash.SplashViewModel
+import kg.autojuuguch.automoikakg.ui.stories.StoriesViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel { MainViewModel(get(), get(), get()) }
-    viewModel { HomeViewModel(get(), get(), get()) }
+    viewModel { HomeViewModel(get(), get(), get(), get()) }
     viewModel { CarWashDetailViewModel(get(), get()) }
     viewModel { MapViewModel(get(), get(), get()) }
     viewModel { MapAddressViewModel(get(), get()) }
@@ -31,5 +32,6 @@ val viewModelModule = module {
     viewModel { UserRegisterViewModel(get(), get()) }
     viewModel { WelcomeViewModel(get()) }
     viewModel { SplashViewModel(get()) }
-    viewModel { ProfileViewModel(get(), get()) }
+    viewModel { ProfileViewModel(get(), get(), get()) }
+    viewModel { StoriesViewModel(get()) }
 }

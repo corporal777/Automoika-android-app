@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_story"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        app:cardCornerRadius="100dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/blue"
+        app:strokeWidth="2dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_story"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:background="@drawable/background_circle"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@drawable/img_test" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title"
+        style="@style/TextStyle.Text"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:maxLines="2"
+        android:minLines="2"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        tools:text="При покупке любого абонимента на лето!" />
+</LinearLayout>
+

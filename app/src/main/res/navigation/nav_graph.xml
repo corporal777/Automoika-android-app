@@ -120,4 +120,17 @@
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
 
+    <fragment
+        android:id="@+id/stories_fragment"
+        android:name="kg.autojuuguch.automoikakg.ui.stories.StoriesFragment"
+        android:label="StoriesFragment"
+        tools:layout="@layout/fragment_stories">
+
+
+        <argument
+            android:name="storyId"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+
 </navigation>

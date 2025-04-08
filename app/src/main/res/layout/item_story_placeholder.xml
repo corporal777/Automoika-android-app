@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shimmer_view_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:shimmer_duration="4000">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cl_story"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            app:cardBackgroundColor="#BBBBBB"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="0dp" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            style="@style/TextStyle.Text"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/placeholder_background"
+            android:gravity="center"
+            android:maxLines="2"
+            android:minLines="2"
+            android:textColor="#BBBBBB"
+            android:textSize="12sp"
+            tools:text="При покупке любого абонимента на лето!" />
+    </LinearLayout>
+</com.facebook.shimmer.ShimmerFrameLayout>
+

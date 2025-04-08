@@ -14,6 +14,7 @@ import kg.autojuuguch.automoikakg.data.body.UserRegisterBody
 import kg.autojuuguch.automoikakg.data.model.CarWashDetailModel
 import kg.autojuuguch.automoikakg.data.model.CarWashReviewModel
 import kg.autojuuguch.automoikakg.data.model.CityLocationModel
+import kg.autojuuguch.automoikakg.data.model.StoriesModel
 import kg.autojuuguch.automoikakg.data.model.UserModel
 import kg.autojuuguch.automoikakg.data.model.YandexGeoModel
 import okhttp3.RequestBody
@@ -72,5 +73,9 @@ interface ApiService {
 
     @POST("v1/location-info")
     fun getAddressInfoFromLatLng(@Body body: LocationBody): Maybe<YandexGeoModel>
+
+    //stories
+    @GET("v1/stories")
+    fun getStories(): Maybe<List<StoriesModel>>
 
 }

@@ -2,6 +2,7 @@ package kg.autojuuguch.automoikakg.di.data
 
 import android.content.Context
 import io.reactivex.subjects.PublishSubject
+import kg.autojuuguch.automoikakg.data.model.StoriesModel
 import kg.autojuuguch.automoikakg.data.model.UserModel
 
 class AppData(private val appPrefs: AppPrefs, private val context: Context) {
@@ -31,10 +32,9 @@ class AppData(private val appPrefs: AppPrefs, private val context: Context) {
 
     private var deviceId: String? = appPrefs.deviceId
         set(value) {
-            if (field.isNullOrEmpty()) {
-                field = value
-                appPrefs.deviceId = value
-            }
+            if (field == value) return
+            field = value
+            appPrefs.deviceId = value
         }
 
     private var accountType: String? = appPrefs.accountType
@@ -49,6 +49,7 @@ class AppData(private val appPrefs: AppPrefs, private val context: Context) {
 
 
     private var userModel : UserModel? = null
+    private var appStories : List<StoriesModel> = emptyList()
 
     fun getUser() = userModel
     fun setUser(user : UserModel?)  {
@@ -68,6 +69,9 @@ class AppData(private val appPrefs: AppPrefs, private val context: Context) {
         val history = appPrefs.search
         appPrefs.search = if (history.isNullOrEmpty()) text else "$history,$text"
     }
+
+    fun setStories(list : List<StoriesModel>) = run { appStories = list }
+    fun getStories(id : String) = appStories.find { x -> x.id == id }
 
     fun isUserAuthorized() = !userId.isNullOrEmpty()
     fun getUserId() = userId

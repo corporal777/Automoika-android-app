@@ -32,7 +32,7 @@ class CarWashDetailViewModel(
         repository.getCarWashById(carWashId, getBinds())
             .performOnBackgroundOutOnMain()
             .subscribeSimple(
-                onError = { it.printStackTrace() },
+                onError = { onReceiveError(it) },
                 onSuccess = { _carWashDetail.setValue(it) }
             ).call(compositeDisposable)
     }

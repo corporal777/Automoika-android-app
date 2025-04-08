@@ -19,8 +19,8 @@ android {
         versionName = "1.0"
         vectorDrawables { useSupportLibrary = true }
 
-        buildConfigField("String", "API_URL", "\"http://192.168.0.101:8080/\"")
-        buildConfigField("String", "SOCKET_URL", "\"ws://192.168.0.101:8080/\"")
+        buildConfigField("String", "API_URL", "\"http://192.168.0.103:8080/\"")
+        buildConfigField("String", "SOCKET_URL", "\"ws://192.168.0.103:8080/\"")
         //buildConfigField("String", "API_URL", "\"http://156.253.251.7:8080/\"")
         //buildConfigField("String", "SOCKET_URL", "\"ws://156.253.251.7:8080/\"")
     }
@@ -103,6 +103,7 @@ dependencies {
     implementation(libs.picasso)
     implementation(libs.simple.cropview)
     implementation(libs.lottie.animation)
+    //implementation(libs.stories.progress.view)
     //implementation 'com.squareup.leakcanary:leakcanary-android:2.14'
     //implementation 'com.github.FrangSierra:RxFirebase:1.5.6'
 
@@ -130,4 +131,7 @@ dependencies {
     //Yandex Map
     implementation(libs.yandex.map)
     implementation(libs.google.map)
+
+    //Yandex Ads
+    implementation(libs.yandex.mobileads)
 }

@@ -27,12 +27,6 @@ class PhoneFormatEditText : TextInputEditText {
         setPhoneHint(hintText)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(
-        context,
-        attrs,
-        defStyle
-    )
-
     private var onInputFocusChanged: (hasFocus: Boolean) -> Unit = {}
     private var onInputTextChanged: (text: CharSequence?) -> Unit = {}
 

@@ -76,6 +76,10 @@ google-map = { module = "com.google.maps:google-maps-services", version = "2.2.0
 
 simple-cropview= { module = "com.isseiaoki:simplecropview", version = "1.1.8" }
 lottie-animation= { module = "com.airbnb.android:lottie", version = "3.4.0" }
+stories-progress-view= { module = "com.github.shts:StoriesProgressView", version = "3.0.0" }
+
+
+yandex-mobileads= { module = "com.yandex.android:mobileads", version = "7.12.0" }
 
 
 
