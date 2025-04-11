@@ -1,7 +1,11 @@
 package kg.autojuuguch.automoikakg.ui.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
+import androidx.paging.flatMap
+import androidx.paging.insertSeparators
+import androidx.paging.map
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Maybe
@@ -17,9 +21,11 @@ import kg.autojuuguch.automoikakg.utils.pagination.PagingDataSourceFactory
 import kg.autojuuguch.automoikakg.utils.pagination.applyErrorHandler
 import kg.autojuuguch.automoikakg.extensions.performOnBackgroundOutOnMain
 import kg.autojuuguch.automoikakg.data.SingleLiveEvent
+import kg.autojuuguch.automoikakg.data.model.FiltersModel
 import kg.autojuuguch.automoikakg.data.model.StoriesModel
 import kg.autojuuguch.automoikakg.di.repository.StoriesRepository
 import kg.autojuuguch.automoikakg.extensions.withDelay
+import kg.autojuuguch.automoikakg.utils.LOG_TAG
 
 class HomeViewModel(
     private val appData: AppData,
@@ -38,11 +44,12 @@ class HomeViewModel(
     val storiesData: LiveData<List<StoriesModel>> get() = _storiesData
 
     private val pagination = PagingDataSourceFactory { limit, offset ->
-        carWashRepository.getCarWashList(buildFilters(limit, offset))
+        carWashRepository.getCarWashListWithAd(buildFilters(limit, offset))
     }.applyErrorHandler { }.build(initialSize = 30, distance = 5)
 
     private var isFirstLaunch = true
     private var searchText = ""
+    private var filters = FiltersModel()
 
     init {
         getStories()
@@ -80,12 +87,25 @@ class HomeViewModel(
         pagination.invalidate()
     }
 
+    fun onFiltersRequest(filtersModel: FiltersModel){
+        Log.e(LOG_TAG, filters.toString())
+        Log.e(LOG_TAG, filtersModel.toString())
+        if (filters == filtersModel) return
+        filters = filtersModel
+        pagination.invalidate()
+    }
+
     private fun buildFilters(limit: Int, offset: Int): Map<String, String> {
         return mutableMapOf<String, String>().apply {
             put("limit", limit.toString())
             put("offset", offset.toString())
 
             if (searchText.isNotBlank()) put("search", searchText)
+            if (!filters.district.isNullOrBlank()) put("district", filters.district!!)
+            if (!filters.type.isNullOrBlank()) put("type", filters.type!!)
+            if (filters.onlyFree) put("boxes", true.toString())
         }
     }
+
+    fun getSearchFilters() = filters
 }

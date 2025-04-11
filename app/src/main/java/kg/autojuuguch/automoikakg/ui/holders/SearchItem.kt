@@ -1,7 +1,6 @@
-package kg.autojuuguch.automoikakg.ui.dialogs
+package kg.autojuuguch.automoikakg.ui.holders
 
 import android.view.View
-import com.xwray.groupie.Item
 import com.xwray.groupie.viewbinding.BindableItem
 import kg.autojuuguch.automoikakg.R
 import kg.autojuuguch.automoikakg.databinding.ItemSearchBinding

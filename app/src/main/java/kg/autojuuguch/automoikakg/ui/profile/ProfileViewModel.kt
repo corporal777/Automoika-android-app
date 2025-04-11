@@ -11,6 +11,7 @@ import kg.autojuuguch.automoikakg.di.repository.AuthRepository
 import kg.autojuuguch.automoikakg.di.repository.UserRepository
 import kg.autojuuguch.automoikakg.extensions.call
 import kg.autojuuguch.automoikakg.extensions.performOnBackgroundOutOnMain
+import kg.autojuuguch.automoikakg.extensions.withDelay
 import kg.autojuuguch.automoikakg.ui.base.BaseViewModel
 
 class ProfileViewModel(
@@ -25,6 +26,7 @@ class ProfileViewModel(
     init {
         compositeDisposable += userRepository.getUser(appData.getUserId())
             .doOnSuccess { appData.setUser(it) }
+            .withDelay(500)
             .performOnBackgroundOutOnMain()
             .withButtonLoading()
             .subscribeSimple(

@@ -71,6 +71,11 @@ object Utils {
         return listOf("Ленинский", "Октябрьский", "Первомайский", "Свердловский")
     }
 
+    fun getCarWashTypes(): List<String> {
+        return listOf("Сам мой", "Услуги мойщика")
+    }
+
+
     fun getCityDistrict(text : String?): String {
         return if (getCityDistricts().contains(text)) text ?: "" else ""
     }

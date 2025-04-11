@@ -1,6 +1,7 @@
 package kg.autojuuguch.automoikakg.di.data
 
 import android.content.Context
+import com.yandex.mobile.ads.nativeads.NativeAd
 import io.reactivex.subjects.PublishSubject
 import kg.autojuuguch.automoikakg.data.model.StoriesModel
 import kg.autojuuguch.automoikakg.data.model.UserModel
@@ -46,10 +47,12 @@ class AppData(private val appPrefs: AppPrefs, private val context: Context) {
 
     //subjects
     private val codeSubject = PublishSubject.create<String>()
+    private val adSubject = PublishSubject.create<NativeAd>()
 
 
     private var userModel : UserModel? = null
     private var appStories : List<StoriesModel> = emptyList()
+
 
     fun getUser() = userModel
     fun setUser(user : UserModel?)  {
@@ -75,4 +78,8 @@ class AppData(private val appPrefs: AppPrefs, private val context: Context) {
 
     fun isUserAuthorized() = !userId.isNullOrEmpty()
     fun getUserId() = userId
+
+    private var yandexAd : NativeAd? = null
+    fun saveYandexAd(ad : NativeAd) = run {  yandexAd = ad }
+    fun getYandexAd() = yandexAd
 }

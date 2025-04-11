@@ -17,8 +17,6 @@ import com.google.android.gms.tasks.Task
 import kg.autojuuguch.automoikakg.R
 import kg.autojuuguch.automoikakg.databinding.FragmentAuthorizationBinding
 import kg.autojuuguch.automoikakg.ui.base.BaseToolbarFragment
-import kg.autojuuguch.automoikakg.ui.dialogs.AuthBottomSheet
-import kg.autojuuguch.automoikakg.ui.dialogs.AuthType
 import kg.autojuuguch.automoikakg.ui.views.ToolbarLayoutView
 import kg.autojuuguch.automoikakg.utils.FirebaseAuthUtils
 import kg.autojuuguch.automoikakg.utils.GoogleAuthUtils

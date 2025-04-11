@@ -3,6 +3,7 @@ package kg.autojuuguch.automoikakg.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.yandex.mobile.ads.nativeads.NativeAd
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.rxkotlin.plusAssign
@@ -65,6 +66,11 @@ class MainViewModel(
         compositeDisposable += socket.connect()
             .performOnBackgroundOutOnMain()
             .subscribeSimple {}
+    }
+
+
+    fun saveYandexAd(ad : NativeAd) {
+        appData.saveYandexAd(ad)
     }
 
 

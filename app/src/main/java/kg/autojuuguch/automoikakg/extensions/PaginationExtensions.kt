@@ -18,7 +18,6 @@ fun <K : Any> PagingDataSourceFactory<K>.build(
     val config = PagingConfig(
         pageSize = pageSize,
         initialLoadSize = initialSize,
-        //maxSize = pageSize * 3,
         prefetchDistance = distance,
         enablePlaceholders = enablePlaceholders
     )

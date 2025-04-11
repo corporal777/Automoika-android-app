@@ -9,7 +9,6 @@ import com.google.gson.Gson
 import io.reactivex.Flowable
 import io.reactivex.rxkotlin.plusAssign
 import kg.autojuuguch.automoikakg.R
-import kg.autojuuguch.automoikakg.data.CarWashData
 import kg.autojuuguch.automoikakg.data.SingleLiveEvent
 import kg.autojuuguch.automoikakg.data.body.LoginBody
 import kg.autojuuguch.automoikakg.data.model.ErrorResponse

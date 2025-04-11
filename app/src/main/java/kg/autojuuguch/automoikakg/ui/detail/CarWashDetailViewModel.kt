@@ -3,7 +3,6 @@ package kg.autojuuguch.automoikakg.ui.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxkotlin.plusAssign
-import kg.autojuuguch.automoikakg.data.CarWashData
 import kg.autojuuguch.automoikakg.di.data.AppData
 import kg.autojuuguch.automoikakg.extensions.performOnBackgroundOutOnMain
 import kg.autojuuguch.automoikakg.di.repository.CarWashRepository

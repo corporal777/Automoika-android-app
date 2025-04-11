@@ -3,6 +3,7 @@ package kg.autojuuguch.automoikakg
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import com.yandex.mapkit.MapKitFactory
+import com.yandex.mobile.ads.common.MobileAds
 import kg.autojuuguch.automoikakg.di.module.appDataModule
 import kg.autojuuguch.automoikakg.di.module.remoteDataSourceModule
 import kg.autojuuguch.automoikakg.di.module.repositoryModule
@@ -18,6 +19,7 @@ class App: Application() {
     override fun onCreate() {
         super.onCreate()
 
+        MobileAds.initialize(this) {}
         MapKitFactory.setApiKey(getString(R.string.yandex_map_api))
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)

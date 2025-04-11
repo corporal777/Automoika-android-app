@@ -1,14 +1,8 @@
 package kg.autojuuguch.automoikakg.ui.dialogs
 
-import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -18,16 +12,16 @@ import kg.autojuuguch.automoikakg.R
 import kg.autojuuguch.automoikakg.databinding.BottomSheetDalogSearchBinding
 import kg.autojuuguch.automoikakg.di.data.AppData
 import kg.autojuuguch.automoikakg.extensions.findItem
-import kg.autojuuguch.automoikakg.extensions.hideKeyboard
 import kg.autojuuguch.automoikakg.extensions.onActionDone
 import kg.autojuuguch.automoikakg.extensions.onAfterTextChanged
 import kg.autojuuguch.automoikakg.extensions.onFocusChanged
 import kg.autojuuguch.automoikakg.extensions.setBackgroundSearch
 import kg.autojuuguch.automoikakg.extensions.showKeyboard
+import kg.autojuuguch.automoikakg.ui.holders.SearchItem
 import org.koin.java.KoinJavaComponent.inject
 
 
-class SearchBottomSheet(val requireContext: Context, val search: String) :
+class SearchBottomSheetDialog(val requireContext: Context, val search: String) :
     BottomSheetDialog(requireContext, R.style.TransparentBottomSheetDialogTheme) {
 
     private val mBinding = BottomSheetDalogSearchBinding.inflate(LayoutInflater.from(context))
@@ -97,7 +91,7 @@ class SearchBottomSheet(val requireContext: Context, val search: String) :
     }
 
 
-    fun setSelectCallback(block: (text: String) -> Unit): SearchBottomSheet {
+    fun setSelectCallback(block: (text: String) -> Unit): SearchBottomSheetDialog {
         onSelect = block
         return this
     }

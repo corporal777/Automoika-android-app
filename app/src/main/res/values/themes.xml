@@ -140,6 +140,10 @@
         <item name="android:colorControlActivated">@color/app_main_color</item>
     </style>
 
+    <style name="TextViewStyle" parent="EditTextStyle">
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
     <style name="AutoCompleteTextStyle" parent="TextInputEditTextStyle">
         <item name="android:focusable">false</item>
         <item name="android:focusableInTouchMode">false</item>
@@ -246,7 +250,7 @@
         <item name="android:textColor">@color/input_title_text_color</item>
     </style>
 
-    <style name="TextStyle.ButtonPages" parent="TextStyle.Semibold">
+    <style name="TextStyle.ButtonPages" parent="TextStyle.Medium">
         <item name="android:paddingHorizontal">@dimen/margin_horizontal_default</item>
         <item name="android:textSize">@dimen/profile_page_button_text_size</item>
         <item name="android:textColor">@color/black</item>

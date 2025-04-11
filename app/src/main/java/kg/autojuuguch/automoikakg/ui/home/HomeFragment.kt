@@ -1,8 +1,6 @@
 package kg.autojuuguch.automoikakg.ui.home
 
-import android.app.SharedElementCallback
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
@@ -16,19 +14,21 @@ import kg.autojuuguch.automoikakg.databinding.FragmentHomeBinding
 import kg.autojuuguch.automoikakg.extensions.offsetChangedListener
 import kg.autojuuguch.automoikakg.extensions.onAfterTextChanged
 import kg.autojuuguch.automoikakg.extensions.setExitSharedElement
+import kg.autojuuguch.automoikakg.extensions.setFiltersSelected
 import kg.autojuuguch.automoikakg.extensions.updateItem
 import kg.autojuuguch.automoikakg.ui.base.BaseVBFragment
 import kg.autojuuguch.automoikakg.ui.detail.CarWashDetailFragmentArgs
-import kg.autojuuguch.automoikakg.ui.dialogs.SearchBottomSheet
+import kg.autojuuguch.automoikakg.ui.dialogs.FiltersBottomSheetDialog
+import kg.autojuuguch.automoikakg.ui.dialogs.SearchBottomSheetDialog
 import kg.autojuuguch.automoikakg.ui.stories.StoriesFragmentArgs
 import kg.autojuuguch.automoikakg.ui.stories.items.StoriesListItem
-import kg.autojuuguch.automoikakg.utils.LOG_TAG
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 
 class HomeFragment : BaseVBFragment<FragmentHomeBinding>() {
 
     override val viewModel by viewModel<HomeViewModel>()
+
 
     private val pagingAdapter by lazy(LazyThreadSafetyMode.NONE) {
         CarWashPagingAdapter { showDetailFragment(it) }
@@ -39,6 +39,7 @@ class HomeFragment : BaseVBFragment<FragmentHomeBinding>() {
             updateItem(StoriesListItem(List(4) { null }))
         }
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,7 +54,11 @@ class HomeFragment : BaseVBFragment<FragmentHomeBinding>() {
             }
             tvSearch.apply {
                 onAfterTextChanged { viewModel.onSearchRequest(it.toString()) }
-                setOnClickListener { showSearchBottomSheet(tvSearch.text.toString()) }
+                setOnClickListener { showSearchBottomSheet(text.toString()) }
+            }
+            viewFilters.apply {
+                setFiltersSelected(viewModel.getSearchFilters().isHasFilters())
+                setOnClickListener { showFiltersBottomSheet() }
             }
             appBarLayout.offsetChangedListener { _, i -> updateAppBarViews(abs(i).toFloat()) }
             setPagingData()
@@ -73,9 +78,17 @@ class HomeFragment : BaseVBFragment<FragmentHomeBinding>() {
     }
 
     private fun showSearchBottomSheet(text: String) {
-        SearchBottomSheet(requireContext(), text)
+        SearchBottomSheetDialog(requireContext(), text)
             .setSelectCallback { mBinding.tvSearch.text = it }
             .show()
+    }
+
+    private fun showFiltersBottomSheet() {
+        FiltersBottomSheetDialog(requireContext(), viewModel.getSearchFilters())
+            .setAcceptCallback {
+                viewModel.onFiltersRequest(it)
+                mBinding.viewFilters.setFiltersSelected(viewModel.getSearchFilters().isHasFilters())
+            }.show()
     }
 
     private fun showDetailFragment(id: String) {
@@ -83,7 +96,7 @@ class HomeFragment : BaseVBFragment<FragmentHomeBinding>() {
         findNavController().navigate(R.id.car_wash_detail_fragment, args)
     }
 
-    private fun showStoriesFragment(id : String, view: View){
+    private fun showStoriesFragment(id: String, view: View) {
         val extras = FragmentNavigatorExtras(view to view.transitionName)
         val args = StoriesFragmentArgs.Builder(id).build().toBundle()
         findNavController().navigate(R.id.stories_fragment, args, null, extras)

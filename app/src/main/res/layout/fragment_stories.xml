@@ -2,8 +2,8 @@
 <kg.autojuuguch.automoikakg.ui.views.FlingLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/fling_layout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
     android:transitionName="shared_element_container">
@@ -29,7 +29,6 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             app:layout_constraintTop_toTopOf="parent" />
-
 
 
         <View
@@ -78,6 +77,7 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@id/btn_call"
+            app:layout_goneMarginBottom="100dp"
             tools:text="Акция, Акция, Акция\nМаникюр+педикюр =2500\nСалам урматуу москвадагы эже -синдилер" />
 
 
@@ -119,8 +119,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_horizontal_default"
-            android:layout_marginBottom="60dp"
-            android:text="@string/continue_text"
+            android:layout_marginBottom="70dp"
+            android:text="@string/go_link"
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </kg.autojuuguch.automoikakg.ui.views.FlingLayout>

@@ -6,11 +6,14 @@ import androidx.paging.PagingState
 import androidx.paging.rxjava2.RxPagingSource
 import io.reactivex.Maybe
 import io.reactivex.Single
+import kg.autojuuguch.automoikakg.data.PaginationData
 import kg.autojuuguch.automoikakg.data.PaginationResponse
+import kg.autojuuguch.automoikakg.di.data.AppData
+import org.koin.java.KoinJavaComponent.inject
 
 open class PagingDataSource<I : Any> : RxPagingSource<Int, I>() {
 
-    lateinit var request: (limit: Int, offset: Int) -> Maybe<PaginationResponse<I>>
+    lateinit var request: (limit: Int, offset: Int) -> Maybe<PaginationData<I>>
     var errorHandler: PagingErrorHandler? = null
 
     private var loadFromStart = false
@@ -18,39 +21,33 @@ open class PagingDataSource<I : Any> : RxPagingSource<Int, I>() {
     private var lastRequestedPage = 0
     private var lastRequestedKey = 0
 
+    private fun getLimit(params: LoadParams<Int>): Int {
+        return if (loadFromStart) {
+            if (lastRequestedKey == 0) params.loadSize else params.loadSize * lastRequestedKey
+        } else params.loadSize
+    }
+
+    private fun getOffset(params: LoadParams<Int>, limit: Int): Int {
+        return if (loadFromStart) 0 else (params.key ?: 0) * limit
+    }
 
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, I>> {
         return try {
-            //val position = params.key ?: 0
-            //val limit = params.loadSize
-            //val offset = (params.key ?: 0) * limit
-
             val position = if (loadFromStart) lastRequestedKey else params.key ?: 0
-            val limit = if (loadFromStart) {
-                if (lastRequestedKey == 0) params.loadSize else params.loadSize * lastRequestedKey
-            } else params.loadSize
-            val offset = if (loadFromStart) 0 else (params.key ?: 0) * limit
+            val limit = getLimit(params)
+            val offset = getOffset(params, limit)
 
             request.invoke(limit, offset).flatMapSingle {
-                if (it.isEmptyData()) {
-                    Single.just(toLoadResult(it, null, null))
-                    //Single.error(EmptyDataException())
-                }
-                else {
-                    val prevKey = null
-                    val nextKey = if (it.data.isEmpty()) null
-                    else if (it.data.size < limit || limit >= it.totalCount) null
-                    else if (it.data.size == it.totalCount) null
-                    //else if (it.data.size == it.totalCount) position
-                    else if (loadFromStart) position
-                    else position + 1
+                val prevKey = null
+                val nextKey = if (it.list.isEmpty()) null
+                else if (it.dataSize < limit || it.totalCount <= limit) null
+                else if (it.dataSize == it.totalCount) null
+                else if (loadFromStart) position
+                else position + 1
 
-                    loadFromStart = false
-                    Single.just(toLoadResult(it, prevKey, nextKey))
-                }
-            }.doOnError { executeError(it) }
-                //.onErrorReturn { LoadResult.Error(it) }
-                .onErrorResumeNext { Single.just(LoadResult.Error(it)) }
+                loadFromStart = false
+                Single.just(toLoadResult(it.list, prevKey, nextKey))
+            }.doOnError { executeError(it) }.onErrorResumeNext { Single.just(LoadResult.Error(it)) }
         } catch (e: Exception) {
             executeError(e)
             Single.just(LoadResult.Error(e))
@@ -78,12 +75,8 @@ open class PagingDataSource<I : Any> : RxPagingSource<Int, I>() {
         //return 0
     }
 
-    private fun toLoadResult(
-        data: PaginationResponse<I>,
-        prevKey: Int?,
-        nextKey: Int?
-    ): LoadResult<Int, I> {
-        return LoadResult.Page(data = data.data, prevKey = prevKey, nextKey = nextKey)
+    open fun toLoadResult(data: List<I>, prev: Int?, next: Int?): LoadResult<Int, I> {
+        return LoadResult.Page(data = data, prevKey = prev, nextKey = next)
     }
 
     private fun executeError(t: Throwable) {

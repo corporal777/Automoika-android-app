@@ -40,9 +40,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#FCE305</color>
+    <color name="orange_yellow">#FFC400</color>
     <color name="blue">#0071E3</color>
     <color name="blue_alpha">#800071E3</color>
     <color name="gray">#B3D6D6E5</color>
+    <color name="menu_icon_color">#9A99A2</color>
 
 
     <color name="code_view_empty_border_color">#333C3C43</color>

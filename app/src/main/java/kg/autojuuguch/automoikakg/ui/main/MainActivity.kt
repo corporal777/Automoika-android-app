@@ -3,6 +3,7 @@ package kg.autojuuguch.automoikakg.ui.main
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.splashscreen.SplashScreen
@@ -14,6 +15,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.navigation.ui.setupWithNavController
 import com.yandex.mapkit.MapKitFactory
+import com.yandex.mobile.ads.common.AdRequestError
+import com.yandex.mobile.ads.common.ImpressionData
+import com.yandex.mobile.ads.common.MobileAds
+import com.yandex.mobile.ads.nativeads.NativeAd
+import com.yandex.mobile.ads.nativeads.NativeAdEventListener
+import com.yandex.mobile.ads.nativeads.NativeAdLoadListener
+import com.yandex.mobile.ads.nativeads.NativeAdLoader
+import com.yandex.mobile.ads.nativeads.NativeAdRequestConfiguration
 import kg.autojuuguch.automoikakg.R
 import kg.autojuuguch.automoikakg.extensions.getFragmentLifecycleCallback
 import kg.autojuuguch.automoikakg.extensions.navigatePopUp
@@ -26,6 +35,7 @@ import kg.autojuuguch.automoikakg.ui.home.HomeFragment
 import kg.autojuuguch.automoikakg.ui.map.MapFragment
 import kg.autojuuguch.automoikakg.ui.profile.ProfileFragment
 import kg.autojuuguch.automoikakg.utils.SYSTEM_UI_LIGHT_NAV_BAR
+import kg.autojuuguch.automoikakg.utils.YandexAdUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity() {
@@ -43,7 +53,6 @@ class MainActivity : BaseActivity() {
                 isVisible = f is BaseToolbarFragment<*>
                 if (f is BaseToolbarFragment<*>) setToolbarTitle(f.title)
             }
-
         }
     )
 
@@ -55,7 +64,9 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    private var yandexAdUtils: YandexAdUtils? = null
     private lateinit var splashScreen: SplashScreen
+
     override fun onCreate(savedInstanceState: Bundle?) {
         showSplashScreen()
         super.onCreate(savedInstanceState)
@@ -63,14 +74,20 @@ class MainActivity : BaseActivity() {
 
         MapKitFactory.initialize(this)
 
-        setupMainNavBar()
-        observeUserCity()
-
         viewModel.connectSocket()
+
+        setupMainNavBar()
+        setupYandexAds()
+        observeUserCity()
 
         binding.toolbar.getBackButton().setOnClickListener { navigateUpVibration() }
     }
 
+    private fun setupYandexAds() {
+        yandexAdUtils = YandexAdUtils(this).setLoadCallback {
+            viewModel.saveYandexAd(it)
+        }
+    }
 
     private fun observeUserCity() {
         viewModel.userCity.observe(this) {
@@ -98,11 +115,15 @@ class MainActivity : BaseActivity() {
             when (item.itemId) {
                 R.id.main -> doPopBackStack.invoke(R.id.home_fragment)
                 R.id.map -> doPopBackStack.invoke(R.id.map_fragment)
-                R.id.favorites -> { true}
+                R.id.favorites -> {
+                    true
+                }
+
                 R.id.profile -> {
                     if (viewModel.isUserAuthorized()) doPopBackStack.invoke(R.id.profile_fragment)
                     else doPopBackStack.invoke(R.id.authorization_fragment)
                 }
+
                 else -> false
             }
         }
@@ -115,10 +136,12 @@ class MainActivity : BaseActivity() {
                 showNavigationBar()
                 menuItem.invoke(R.id.main).isChecked = true
             }
+
             is MapFragment -> {
                 showNavigationBar()
                 menuItem.invoke(R.id.map).isChecked = true
             }
+
             is ProfileFragment -> {
                 showNavigationBar()
                 menuItem.invoke(R.id.profile).isChecked = true
@@ -131,27 +154,25 @@ class MainActivity : BaseActivity() {
 
     private fun setupNavigateUpButton(f: Fragment) {
         when (f) {
-            is ProfileFragment -> {
-                binding.toolbar.getBackButton().isInvisible = true
-            }
+            is ProfileFragment -> binding.toolbar.getBackButton().isInvisible = true
             else -> binding.toolbar.getBackButton().isInvisible = false
         }
     }
 
 
-    private fun showCityFragment(){
+    private fun showCityFragment() {
         findNavController().navigatePopUp(R.id.city_fragment)
     }
 
-    private fun showHomeFragment(){
+    private fun showHomeFragment() {
         findNavController().navigatePopUp(R.id.home_fragment)
     }
 
-    private fun showLoginFragment(){
+    private fun showLoginFragment() {
         findNavController().navigate(R.id.authorization_fragment)
     }
 
-    private fun showProfileFragment(){
+    private fun showProfileFragment() {
         findNavController().navigate(R.id.profile_fragment)
     }
 
@@ -176,7 +197,7 @@ class MainActivity : BaseActivity() {
         splashScreen.setKeepOnScreenCondition { viewModel.isLoading.value }
     }
 
-    fun setAppbarElevation(offset : Int){
+    fun setAppbarElevation(offset: Int) {
         binding.toolbar.setToolbarShadow(offset)
     }
 }

@@ -4,10 +4,13 @@
     <string name="address_text">Адрес: %s</string>
     <string name="search_text_by_name_address">Поиск по названию, адресу</string>
     <string name="search_text">Поиск</string>
+    <string name="filters_text">Фильтры</string>
+    <string name="variants_text">Варианты</string>
     <string name="location_text">Местоположение</string>
     <string name="no_data_found_title">Нет результатов</string>
     <string name="text_call">Позвонить</string>
     <string name="text_boxes">Боксы:</string>
+    <string name="text_posts">Посты</string>
 
     <string name="test_text">Практически в каждом населенном пункте России на сегодняшний день вы с легкостью найдете разнообразные детские спектакли и представления. Детский театр перестал давно-но экзотикой...</string>
     <string name="route_instruction_text">Инструкция маршрута:</string>
@@ -42,6 +45,7 @@
     <string name="register_user">Я пользователь</string>
     <string name="register_car_wash">У меня есть автомойка</string>
     <string name="save">Сохранить</string>
+    <string name="go_link">Перейти</string>
 
     <string name="auth_info_title">Войдите в аккаунт \nили зарегистрируйтесь</string>
     <string name="auth_info_text">Чтобы получить доступ ко всем возможностям и функциям приложения</string>
@@ -163,4 +167,9 @@
     <string name="letter_developers">Написать разработчикам</string>
     <string name="about_app">О приложении</string>
     <string name="logout_success_text">Вы вышли из аккаунта</string>
+
+    <string name="district_filter_title">Район города</string>
+    <string name="district_filter_hint">Выберите район</string>
+    <string name="clear_variants_text">Сбросить</string>
+    <string name="only_free_text">Только свободные</string>
 </resources>

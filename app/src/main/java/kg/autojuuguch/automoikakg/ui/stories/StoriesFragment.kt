@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.app.SharedElementCallback
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.transition.MaterialContainerTransform
 import com.google.android.material.transition.MaterialSharedAxis
@@ -13,6 +14,7 @@ import kg.autojuuguch.automoikakg.R
 import kg.autojuuguch.automoikakg.databinding.FragmentStoriesBinding
 import kg.autojuuguch.automoikakg.extensions.setEnterSharedElement
 import kg.autojuuguch.automoikakg.extensions.setImage
+import kg.autojuuguch.automoikakg.extensions.showCustomTabsBrowser
 import kg.autojuuguch.automoikakg.ui.base.BaseVBFragment
 import kg.autojuuguch.automoikakg.ui.main.MainActivity
 import kg.autojuuguch.automoikakg.ui.views.stories.StoriesProgressView
@@ -102,11 +104,15 @@ class StoriesFragment : BaseVBFragment<FragmentStoriesBinding>() {
                 startStories()
             }
         }
-        viewModel.story.observe {
+        viewModel.story.observe { story ->
             mBinding.apply {
-                tvTitle.text = it.title
-                tvDescription.text = it.message
-                ivBackgroundImage.setImage(it.image)
+                tvTitle.text = story.title
+                tvDescription.text = story.message
+                ivBackgroundImage.setImage(story.image)
+                btnCall.apply {
+                    isVisible = !story.link.isNullOrEmpty()
+                    setOnClickListener { showCustomTabsBrowser(requireContext(), story.link ?: "") }
+                }
             }
         }
     }

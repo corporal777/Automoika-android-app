@@ -15,5 +15,6 @@ class StoriesModel (
 data class StoryModel(
     val title: String,
     val message: String,
-    val image: String
+    val image: String,
+    val link : String? = null
 ) : Parcelable

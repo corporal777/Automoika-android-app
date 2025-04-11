@@ -15,6 +15,7 @@ import android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
 import android.view.inputmethod.EditorInfo
 import android.widget.CompoundButton
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -27,6 +28,7 @@ import androidx.core.view.isVisible
 import androidx.core.view.marginTop
 import androidx.core.view.updateLayoutParams
 import androidx.core.widget.NestedScrollView
+import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.request.CachePolicy
@@ -41,6 +43,15 @@ import com.yandex.runtime.image.ImageProvider
 import kg.autojuuguch.automoikakg.R
 import kg.autojuuguch.automoikakg.adapter.NoFilterArrayAdapter
 import kotlin.math.abs
+
+fun ImageButton.setFiltersSelected(selected : Boolean){
+    if (selected) setImageResource(R.drawable.ic_filters_fill)
+    else setImageResource(R.drawable.ic_filters)
+}
+
+fun TextView.setDrawableTint(res: Int) {
+    TextViewCompat.setCompoundDrawableTintList(this, getColorStateList(res))
+}
 
 fun TextView.setLeftDrawable(res: Int) {
     this.setCompoundDrawablesWithIntrinsicBounds(res, 0, 0, 0)
